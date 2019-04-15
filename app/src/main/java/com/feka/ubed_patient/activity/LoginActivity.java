@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     private void performLoginCheck() {
         if (isLogin()){
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.login_placeholder, new LoginFragment()).commit();
         }
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isLogin() {
-        return true;
+        return false;
     }
 
 }
