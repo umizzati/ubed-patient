@@ -43,7 +43,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginFragment.loginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,26 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.login_placeholder, new LoginFragment()).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.login_placeholder, new LoginFragment())
+                    .commit();
         }
+    }
+
+
+    private boolean isLogin() {
+        return false;
+    }
+
+    @Override
+    public void onRegister() {
+        loadRegister();
+    }
+
+    @Override
+    public void onLogin() {
+
     }
 
     private void performRegistering(Patient patient){
@@ -68,12 +86,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadRegister(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.login_placeholder, new RegisterFragment()).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.login_placeholder, new RegisterFragment())
+                .addToBackStack(null)
+                .commit();
     }
-
-    private boolean isLogin() {
-        return false;
-    }
-
 }
 
