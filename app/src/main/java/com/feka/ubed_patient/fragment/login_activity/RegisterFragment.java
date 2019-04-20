@@ -1,7 +1,5 @@
-package com.feka.ubed_patient.fragment;
+package com.feka.ubed_patient.fragment.login_activity;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
