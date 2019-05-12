@@ -14,8 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.fragment.main_activity.AppoinmentFragment;
+import com.feka.ubed_patient.fragment.main_activity.EmergencyFragment;
+import com.feka.ubed_patient.fragment.main_activity.HomeFragment;
+import com.feka.ubed_patient.fragment.main_activity.ProfileFragment;
+import com.feka.ubed_patient.fragment.main_activity.SettingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    HomeFragment homeFragment;
+    AppoinmentFragment appoinmentFragment;
+    EmergencyFragment emergencyFragment;
+    ProfileFragment profileFragment;
+    SettingFragment settingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +35,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //initialize fragment
+        homeFragment = new HomeFragment();
+        appoinmentFragment = new AppoinmentFragment();
+        emergencyFragment = new EmergencyFragment();
+        profileFragment = new ProfileFragment();
+        settingFragment = new SettingFragment();
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -41,6 +59,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //commit home fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.login_placeholder, homeFragment)
+                .commit();
     }
 
     @Override

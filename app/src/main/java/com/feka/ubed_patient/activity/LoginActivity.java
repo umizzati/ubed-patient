@@ -3,17 +3,26 @@ package com.feka.ubed_patient.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.fragment.login_activity.LoginFragment;
 import com.feka.ubed_patient.fragment.login_activity.RegisterFragment;
 import com.feka.ubed_patient.model.Patient;
+import com.feka.ubed_patient.utils.SPUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 /**
  * A login screen that offers login via email/password.
@@ -22,8 +31,6 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
 
     FrameLayout placeholder;
     ProgressBar progressBar;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor sharedEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +42,6 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
         progressBar = findViewById(R.id.login_progressbar);
 
         performLoginCheck();
-
-        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        sharedEditor = sharedPref.edit();
-
     }
 
     private void performLoginCheck() {
@@ -55,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
 
 
     private boolean isLogin() {
-        return true;
+        return false;
     }
 
     @Override
@@ -67,23 +70,22 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
     public void onLogin(String name, String password) {
         loadProgressBar();
         //login to firestore
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        DocumentReference docRef = db.collection("users").document("uwki0aPpuxl6ArBYesa5");
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        Log.d("doc", "DocumentSnapshot data: " + document.getData());
-//                    } else {
-//                        Log.d("doc", "No such document");
-//                    }
-//                } else {
-//                    Log.d("doc", "get failed with ", task.getException());
-//                }
-//            }
-//        });
+        DocumentReference docRef = BaseApplication.fireStoreDB.collection("users").document("uwki0aPpuxl6ArBYesa5");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("doc", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("doc", "No such document");
+                    }
+                } else {
+                    Log.d("doc", "get failed with ", task.getException());
+                }
+            }
+        });
 
 //        db.collection("users")
 //                .get()
