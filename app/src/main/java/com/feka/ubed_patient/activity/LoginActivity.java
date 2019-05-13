@@ -23,6 +23,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 /**
  * A login screen that offers login via email/password.
@@ -69,38 +73,18 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
     @Override
     public void onLogin(String name, String password) {
         loadProgressBar();
-        //login to firestore
-        DocumentReference docRef = BaseApplication.fireStoreDB.collection("users").document("uwki0aPpuxl6ArBYesa5");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        Query query = BaseApplication.fireStoreDB.collection("users").whereEqualTo("email", name).whereEqualTo("password", password);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("doc", "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d("doc", "No such document");
-                    }
-                } else {
-                    Log.d("doc", "get failed with ", task.getException());
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(Objects.requireNonNull(task.getResult()).size() > 0){
+                    Toast.makeText(getApplicationContext(), "User email already exist in the database ", Toast.LENGTH_SHORT).show();
+                }else{
+                    Log.d("db", "Not found");
                 }
             }
         });
-
-//        db.collection("users")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d("login", document.getId() + " => " + document.getData());
-//                            }
-//                        } else {
-//                            Log.w("login", "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
     }
 
     private void performRegistering(Patient patient){
