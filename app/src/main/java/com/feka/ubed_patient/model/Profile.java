@@ -33,26 +33,26 @@ class Profile {
         this.tel_number = tel_number;
     }
 
-    public boolean isMalysian() {
-        return isMalysian;
+    public boolean isMalaysian() {
+        return isMalaysian;
     }
 
-    public void setMalysian(boolean malysian) {
-        isMalysian = malysian;
+    public void setMalaysian(boolean malaysian) {
+        isMalaysian = malaysian;
     }
 
 
-    public Profile(String fullName, int no_ic, String address, int tel_number, boolean isMalysian) {
+    public Profile(String fullName, int no_ic, String address, int tel_number, boolean isMalaysian) {
         this.fullName = fullName;
         this.no_ic = no_ic;
         this.address = address;
         this.tel_number = tel_number;
-        this.isMalysian = isMalysian;
+        this.isMalaysian = isMalaysian;
     }
 
     public String fullName;
     public int no_ic;
     public String address;
     public int tel_number;
-    public boolean isMalysian = true;
+    public boolean isMalaysian = true;
 }

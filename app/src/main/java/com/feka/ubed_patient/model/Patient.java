@@ -2,11 +2,11 @@ package com.feka.ubed_patient.model;
 
 public class Patient {
 
-    public Patient(String email, String encrypt_password, String token, boolean isActivated, Medical medical, Profile profile, Family[] family, String updated, String created) {
+    public Patient(String email, String encrypt_password, String token, boolean isActive, Medical medical, Profile profile, Family[] family, String updated, String created) {
         this.email = email;
         this.encrypt_password = encrypt_password;
         this.token = token;
-        this.isActivated = isActivated;
+        this.isActive = isActive;
         this.medical = medical;
         this.profile = profile;
         this.family = family;
@@ -17,10 +17,10 @@ public class Patient {
     public String email;
     public String encrypt_password;
     public String token;
-    public boolean isActivated;
+    public boolean isActive;
     public Medical medical;
     public Profile profile;
-    public Family family[];
+    public Family[] family;
     public String updated;
     public String created;
 
@@ -48,12 +48,12 @@ public class Patient {
         this.token = token;
     }
 
-    public boolean isActivated() {
-        return isActivated;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setActivated(boolean activated) {
-        isActivated = activated;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Medical getMedical() {
