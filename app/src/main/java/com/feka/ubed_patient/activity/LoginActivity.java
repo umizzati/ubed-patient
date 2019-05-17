@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.lo
 
 
     private boolean isLogin() {
-        return false;
+        return true;
     }
 
     @Override

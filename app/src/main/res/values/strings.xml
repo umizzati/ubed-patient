@@ -31,4 +31,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--WelcomeActivity-->
+    <string name="welcome_ubed">Welcome to Ubed!</string>
+    <string name="welcome_login">Login</string>
+    <string name="welcome_register">Register</string>
+
+
 </resources>

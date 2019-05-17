@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 public class SPUtils {
 
     private String SP_UBED_PATIENT = "SP_UBED_PATIENT";
-    public static SharedPreferences sp;
-    public static SharedPreferences.Editor spe;
+    private static SharedPreferences sp;
+    private static SharedPreferences.Editor spe;
     private static SPUtils me;
     public static SPUtils getInstance(){
         if (me == null){
