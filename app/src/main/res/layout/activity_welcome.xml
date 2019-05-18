@@ -7,42 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.WelcomeActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        fontPath="fonts/Montserrat-Regular.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginEnd="176dp"
-        android:text="@string/welcome_ubed"
-        android:textSize="12pt"
+
+    <FrameLayout
+        android:id="@+id/welcomePlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginBottom="121dp"
-        android:background="@drawable/roundedbutton"
-        android:text="@string/welcome_login"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="78dp"
-        android:layout_marginBottom="121dp"
-        android:background="@drawable/roundedbutton2"
-        android:text="@string/welcome_register"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

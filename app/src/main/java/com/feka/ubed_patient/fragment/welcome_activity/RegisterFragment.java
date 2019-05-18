@@ -1,4 +1,4 @@
-package com.feka.ubed_patient.fragment.login_activity;
+package com.feka.ubed_patient.fragment.welcome_activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
