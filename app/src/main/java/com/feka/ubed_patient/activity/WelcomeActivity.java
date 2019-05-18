@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,19 +77,9 @@ public class WelcomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLogin(String name, String password) {
-        Query query = BaseApplication.fireStoreDB.collection("users").whereEqualTo("email", name).whereEqualTo("password", password);
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(Objects.requireNonNull(task.getResult()).size() > 0){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Invalid email or password! ", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    public void onSuccessLogin() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
 
     @Override

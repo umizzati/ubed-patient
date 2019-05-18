@@ -9,18 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
     private loginListener listener;
     public interface loginListener{
-        void onLogin(String name, String password);
+        void onSuccessLogin();
     }
 
     Button loginBtn;
+    FrameLayout loginProgressbar;
     EditText email, password;
     String _email, _password;
 
@@ -34,21 +43,45 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_login, container, false);
         loginBtn = v.findViewById(R.id.loginBtn);
+        loginProgressbar = v.findViewById(R.id.loginProgressbar);
         email = v.findViewById(R.id.email);
         password = v.findViewById(R.id.password);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                run_progress();
                 if (isValid()){
-                    listener.onLogin(_email, _password);
+                    onLogin();
                 }else
-                    Toast.makeText(getActivity(), "Invalid email or password!", Toast.LENGTH_LONG).show();
+                    invalidMsg();
             }
         });
 
-
         return v;
+    }
+
+    private void onLogin(){
+        Query query = BaseApplication.fireStoreDB.collection("users").whereEqualTo("email", _email).whereEqualTo("password", _password);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(Objects.requireNonNull(task.getResult()).size() > 0){
+                    listener.onSuccessLogin();
+                }else
+                    invalidMsg();
+            }
+        });
+    }
+
+    public void run_progress() {
+        loginBtn.setVisibility(View.GONE);
+        loginProgressbar.setVisibility(View.VISIBLE);
+    }
+
+    public void stop_progress() {
+        loginProgressbar.setVisibility(View.GONE);
+        loginBtn.setVisibility(View.VISIBLE);
     }
 
     private boolean isValid() {
@@ -59,6 +92,11 @@ public class LoginFragment extends Fragment {
             return false;
 
         return !_password.equals("");
+    }
+
+    private void invalidMsg(){
+        Toast.makeText(getActivity(), "Invalid email or password! ", Toast.LENGTH_SHORT).show();
+        stop_progress();
     }
 
     @Override
