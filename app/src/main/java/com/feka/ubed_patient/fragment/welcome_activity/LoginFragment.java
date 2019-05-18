@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.feka.ubed_patient.R;
 
@@ -21,11 +22,11 @@ public class LoginFragment extends Fragment {
 
     Button loginBtn;
     EditText email, password;
+    String _email, _password;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -39,11 +40,25 @@ public class LoginFragment extends Fragment {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onLogin(email.getText().toString(), password.getText().toString());
+                if (isValid()){
+                    listener.onLogin(_email, _password);
+                }else
+                    Toast.makeText(getActivity(), "Invalid email or password!", Toast.LENGTH_LONG).show();
             }
         });
 
+
         return v;
+    }
+
+    private boolean isValid() {
+        _email = email.getText().toString();
+        _password = password.getText().toString();
+
+        if(_email.equals(""))
+            return false;
+
+        return !_password.equals("");
     }
 
     @Override

@@ -21,28 +21,32 @@ tools:context=".fragment.welcome_activity.WelcomeFragment">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-<Button
-    android:id="@+id/welcomeLoginBtn"
-    android:layout_width="120dp"
-    android:layout_height="50dp"
-    android:layout_marginStart="78dp"
-    android:layout_marginBottom="121dp"
-    android:background="@drawable/roundedbutton"
-    android:text="@string/welcome_login"
-    android:textColor="#ffffff"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/welcomeLoginBtn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="121dp"
+        android:background="@drawable/roundedbutton"
+        android:text="@string/welcome_login"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/welcomeRegisterBtn"
+        app:layout_constraintStart_toStartOf="parent" />
 
-<Button
-    android:id="@+id/welcomeRegisterBtn"
-    android:layout_width="120dp"
-    android:layout_height="50dp"
-    android:layout_marginEnd="78dp"
-    android:layout_marginBottom="121dp"
-    android:background="@drawable/roundedbutton2"
-    android:text="@string/welcome_register"
-    android:textColor="@color/colorPrimary"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    <Button
+        android:id="@+id/welcomeRegisterBtn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/roundedbutton2"
+        android:text="@string/welcome_register"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/welcomeLoginBtn" />
 
 </android.support.constraint.ConstraintLayout>
