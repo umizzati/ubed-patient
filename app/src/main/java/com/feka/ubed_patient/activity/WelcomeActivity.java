@@ -83,7 +83,9 @@ public class WelcomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRegister(String name, String email, String tel_num, String ic, String password) {
-
+    public void onSuccessRegister() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Toast.makeText(this, "Success create account. Please login", Toast.LENGTH_LONG).show();
     }
 }

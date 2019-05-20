@@ -10,22 +10,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.model.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 
 public class RegisterFragment extends Fragment {
 
     EditText name, email, tel_num, no_ic, password, confirm_password;
     String _name, _email, _tel_num, _no_ic, _password, _confirm_password;
     Button registerBtn;
+    FrameLayout registerProgressbar;
     
     private registerListener listener;
     public interface registerListener{
-        void onRegister(String name,
-                        String email,
-                        String tel_num,
-                        String ic,
-                        String password);
+        void onSuccessRegister();
     }
     
     @Override
@@ -44,16 +48,40 @@ public class RegisterFragment extends Fragment {
         password = v.findViewById(R.id.signup_password);
         confirm_password = v.findViewById(R.id.signup_confirm_password);
         registerBtn = v.findViewById(R.id.signup_button);
+        registerProgressbar = v.findViewById(R.id.registerProgressbar);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isValidate()){
-                    listener.onRegister(_name, _email, _tel_num, _no_ic, _password);
+                    run_progress();
+                    onRegister();
+                }else{
+                    invalidMsg();
                 }
             }
         });
         return v;
+    }
+
+    private void onRegister() {
+        long epoch = System.currentTimeMillis()/1000;
+        User users = new User(_name, _email, _tel_num, _no_ic, _password, true, true, epoch, epoch);
+
+        BaseApplication.fireStoreDB.collection("users")
+                .add(users)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        listener.onSuccessRegister();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        invalidMsg();
+                    }
+                });
     }
 
     // validate through all 
@@ -81,6 +109,21 @@ public class RegisterFragment extends Fragment {
             return false;
 
         return _password.equals(_confirm_password);
+    }
+
+    private void invalidMsg(){
+        Toast.makeText(getActivity(), "Failed to register! ", Toast.LENGTH_SHORT).show();
+        stop_progress();
+    }
+
+    public void run_progress() {
+        registerBtn.setVisibility(View.GONE);
+        registerProgressbar.setVisibility(View.VISIBLE);
+    }
+
+    public void stop_progress() {
+        registerProgressbar.setVisibility(View.GONE);
+        registerBtn.setVisibility(View.VISIBLE);
     }
 
     @Override
