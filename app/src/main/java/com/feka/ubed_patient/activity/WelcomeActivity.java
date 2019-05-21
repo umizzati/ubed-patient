@@ -78,7 +78,7 @@ public class WelcomeActivity extends AppCompatActivity implements
 
     @Override
     public void onSuccessLogin() {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), BaseActivity.class));
         finish();
     }
 
