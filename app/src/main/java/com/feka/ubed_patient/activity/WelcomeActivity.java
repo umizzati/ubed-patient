@@ -2,25 +2,17 @@ package com.feka.ubed_patient.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.fragment.welcome_activity.LoginFragment;
 import com.feka.ubed_patient.fragment.welcome_activity.RegisterFragment;
 import com.feka.ubed_patient.fragment.welcome_activity.WelcomeFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Objects;
+import com.feka.ubed_patient.utils.SPUtils;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -52,10 +44,20 @@ public class WelcomeActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.welcomePlaceholder, welcomeFragment)
-                .commit();
+        // check if already login
+        if (isLogin()){
+            toBaseActivity();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.welcomePlaceholder, welcomeFragment)
+                    .commit();
+        }
+
+    }
+
+    private boolean isLogin() {
+        return SPUtils.getInstance().getSP().getBoolean("USER_EXISTS", true);
     }
 
     @Override
@@ -78,9 +80,14 @@ public class WelcomeActivity extends AppCompatActivity implements
 
     @Override
     public void onSuccessLogin() {
+        toBaseActivity();
+    }
+
+    private void toBaseActivity() {
         startActivity(new Intent(getApplicationContext(), BaseActivity.class));
         finish();
     }
+
 
     @Override
     public void onSuccessRegister() {

@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 
 import com.feka.ubed_patient.R;
 
-public class BedFragment extends Fragment {
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction();
-    }
+public class AppointmentFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
-
-    public BedFragment() {
+    public AppointmentFragment() {
         // Required empty public constructor
     }
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction();
+    }
 
-//    public static BedFragment newInstance(String param1, String param2) {
-//        BedFragment fragment = new BedFragment();
+//    public static AppointmentFragment newInstance(String param1, String param2) {
+//        AppointmentFragment fragment = new AppointmentFragment();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -36,7 +36,7 @@ public class BedFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bed, container, false);
+        return inflater.inflate(R.layout.fragment_appoinment, container, false);
     }
 
     @Override

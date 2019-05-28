@@ -10,16 +10,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.feka.ubed_patient.R;
-import com.feka.ubed_patient.fragment.main_activity.AppoinmentFragment;
+import com.feka.ubed_patient.fragment.main_activity.AppointmentFragment;
 import com.feka.ubed_patient.fragment.main_activity.BedFragment;
 import com.feka.ubed_patient.fragment.main_activity.HomeFragment;
 import com.feka.ubed_patient.fragment.main_activity.SettingFragment;
 
-public class BaseActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
+public class BaseActivity extends AppCompatActivity implements
+        HomeFragment.OnFragmentInteractionListener,
+        BedFragment.OnFragmentInteractionListener,
+        AppointmentFragment.OnFragmentInteractionListener{
     private TextView mTextMessage;
     HomeFragment homeFragment;
     BedFragment bedFragment;
-    AppoinmentFragment appoinmentFragment;
+    AppointmentFragment appointmentFragment;
     SettingFragment settingFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -35,7 +38,7 @@ public class BaseActivity extends AppCompatActivity implements HomeFragment.OnFr
                     updatePage(bedFragment);
                     return true;
                 case R.id.navigation_appointment:
-                    updatePage(appoinmentFragment);
+                    updatePage(appointmentFragment);
                     return true;
             }
             return false;
@@ -59,7 +62,7 @@ public class BaseActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         homeFragment = new HomeFragment();
         bedFragment = new BedFragment();
-        appoinmentFragment = new AppoinmentFragment();
+        appointmentFragment = new AppointmentFragment();
         settingFragment = new SettingFragment();
 
     }
@@ -76,6 +79,11 @@ public class BaseActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction() {
 
     }
 }
