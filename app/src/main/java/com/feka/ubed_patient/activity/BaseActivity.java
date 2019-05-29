@@ -1,5 +1,6 @@
 package com.feka.ubed_patient.activity;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -14,6 +15,8 @@ import com.feka.ubed_patient.fragment.main_activity.AppointmentFragment;
 import com.feka.ubed_patient.fragment.main_activity.BedFragment;
 import com.feka.ubed_patient.fragment.main_activity.HomeFragment;
 import com.feka.ubed_patient.fragment.main_activity.SettingFragment;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class BaseActivity extends AppCompatActivity implements
         HomeFragment.OnFragmentInteractionListener,
@@ -50,6 +53,12 @@ public class BaseActivity extends AppCompatActivity implements
                 .beginTransaction()
                 .replace(R.id.basePlaceholder, fragment)
                 .commit();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // this for fonts
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#1FA2D6</color>
     <color name="colorPrimaryDark">#0B6C92</color>
     <color name="colorAccent">#1FA2D6</color>
+
+
+    <color name="colorStatusPending">#FF6F22</color>
+    <color name="colorStatusApprove">#03C923</color>
+    <color name="colorStatusReject">#E60202</color>
+    <color name="colorStatusComplete">#49464B</color>
 </resources>
