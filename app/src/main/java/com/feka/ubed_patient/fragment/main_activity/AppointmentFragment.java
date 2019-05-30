@@ -3,31 +3,30 @@ package com.feka.ubed_patient.fragment.main_activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.adapter.AppointmentAdapter;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AppointmentFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
+    ListView appointmentListView;
+    FloatingActionButton appointmentAddBtn;
+    AppointmentAdapter mAppointmentAdapter;
     public AppointmentFragment() {
-        // Required empty public constructor
     }
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction();
     }
 
-//    public static AppointmentFragment newInstance(String param1, String param2) {
-//        AppointmentFragment fragment = new AppointmentFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,13 @@ public class AppointmentFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_appoinment, container, false);
+        View v = inflater.inflate(R.layout.fragment_appoinment, container, false);
+        appointmentListView = v.findViewById(R.id.appointment_listview);
+        appointmentAddBtn = v.findViewById(R.id.appointment_add_btn);
+        List<String> strings = Arrays.asList("sup1", "sup2", "sup3");
+        mAppointmentAdapter = new AppointmentAdapter(getContext(), strings);
+        appointmentListView.setAdapter(mAppointmentAdapter);
+        return v;
     }
 
     @Override
