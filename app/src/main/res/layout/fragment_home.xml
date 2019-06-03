@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.main_activity.HomeFragment">
+    android:orientation="vertical"
+    tools:context=".fragment.main_activity.HomeFragment"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/home_appointment_btn"
+        style="@style/listMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/home_appointment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/home_ubed_btn"
+        style="@style/listMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/home_bed" />
+
+    <TextView
+        android:id="@+id/home_aboutus_btn"
+        style="@style/listMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/home_about_us" />
+
+    <TextView
+        android:id="@+id/home_feedback_btn"
+        style="@style/listMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/home_feedback" />
+
+    <TextView
+        android:id="@+id/home_signout_btn"
+        style="@style/listMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/home_signout" />
+
+</LinearLayout>

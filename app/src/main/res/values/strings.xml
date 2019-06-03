@@ -45,7 +45,21 @@
     <string name="register_description">Register as Patient</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_bed">Bed</string>
+    <string name="title_bed">UBed</string>
     <string name="title_appointment">Appointment</string>
 
+    <!--HomeFragment-->
+    <string name="home_bed">UBed</string>
+    <string name="home_appointment">Appointment</string>
+    <string name="home_about_us">About Us</string>
+    <string name="home_feedback">Feedback</string>
+    <string name="home_signout">Sign Out</string>
+
+    <!--Bed-form-->
+    <string name="bed_form_description">Booking a bed</string>
+    <string name="bed_form_patient_id">Patient ID</string>
+    <string name="bed_form_department">Department</string>
+    <string name="bed_form_date">Date</string>
+    <string name="bed_form_note">Note</string>
+    <string name="bed_form_btn">book</string>
 </resources>

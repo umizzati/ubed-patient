@@ -1,11 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bed_form_description"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_bed_patient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bed_form_patient_id"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_bed_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bed_form_department"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_bed_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bed_form_date"
+                android:ems="10"
+                android:inputType="date" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_bed_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bed_form_note"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/bedBookBtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedbutton"
+            android:text="@string/bed_form_btn"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/bedProgressbarBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:background="@drawable/roundedbutton"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+
+            <ProgressBar
+                android:id="@+id/bedProgressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="#fff"
+                android:indeterminateTintMode="src_atop" />
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

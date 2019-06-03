@@ -28,4 +28,10 @@
         <item name="fontPath">fonts/Montserrat-Bold.ttf</item>
     </style>
 
+    <style name="listMenu">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
 </resources>
