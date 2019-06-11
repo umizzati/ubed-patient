@@ -1,8 +1,11 @@
 package com.feka.ubed_patient.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,9 @@ import com.feka.ubed_patient.fragment.main_activity.AppointmentFragment;
 import com.feka.ubed_patient.fragment.main_activity.BedFragment;
 import com.feka.ubed_patient.fragment.main_activity.HomeFragment;
 import com.feka.ubed_patient.fragment.main_activity.SettingFragment;
+import com.feka.ubed_patient.utils.SPUtils;
+
+import java.util.Objects;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -36,12 +42,15 @@ public class BaseActivity extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
                     updatePage(homeFragment);
                     return true;
                 case R.id.navigation_bed:
+                    Objects.requireNonNull(getSupportActionBar()).setTitle("UBed");
                     updatePage(bedFragment);
                     return true;
                 case R.id.navigation_appointment:
+                    Objects.requireNonNull(getSupportActionBar()).setTitle("Appointment");
                     updatePage(appointmentFragment);
                     return true;
             }
@@ -75,6 +84,7 @@ public class BaseActivity extends AppCompatActivity implements
         appointmentFragment = new AppointmentFragment();
         settingFragment = new SettingFragment();
 
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
     }
 
     @Override
@@ -121,6 +131,16 @@ public class BaseActivity extends AppCompatActivity implements
 
     @Override
     public void onSignOut() {
+        SPUtils.getInstance().getSPE().clear();
+        SPUtils.getInstance().getSPE().apply();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+                finish();
+            }
+        }, 2000);
 
     }
 }

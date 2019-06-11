@@ -2,12 +2,14 @@ package com.feka.ubed_patient.fragment.main_activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.feka.ubed_patient.R;
@@ -19,7 +21,7 @@ public class HomeFragment extends Fragment {
     TextView mAboutUs;
     TextView mFeedback;
     TextView mSignOut;
-    AlertDialog mDialogFeedback;
+    AlertDialog mDialogLogin;
     private OnFragmentInteractionListener mListener;
 
     public interface OnFragmentInteractionListener {
@@ -80,7 +82,7 @@ public class HomeFragment extends Fragment {
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onSignOut();
+                onSignOut();
             }
         });
         return v;
@@ -111,8 +113,29 @@ public class HomeFragment extends Fragment {
         dialogBuilder.setView(dialogView);
 
         // action view
-        mDialogFeedback = dialogBuilder.create();
-        mDialogFeedback.show();
+        mDialogLogin = dialogBuilder.create();
+        mDialogLogin.show();
+    }
+
+    private void onSignOut() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.form_signout, null);
+        final Button signOutBtn = dialogView.findViewById(R.id.signout_btn);
+        final FrameLayout progressBar = dialogView.findViewById(R.id.signout_progressbar);
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOutBtn.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                mListener.onSignOut();
+            }
+        });
+        dialogBuilder.setView(dialogView);
+
+        // action view
+        mDialogLogin = dialogBuilder.create();
+        mDialogLogin.show();
     }
 
 }

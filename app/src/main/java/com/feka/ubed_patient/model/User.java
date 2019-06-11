@@ -12,7 +12,9 @@ public class User {
     private long created;
     private long updated;
 
+    public User() {
 
+    }
     public User(String name, String email, String tel_num, String ic_num, String password, boolean isPatient, boolean isActive, long created, long updated) {
         this.name = name;
         this.email = email;

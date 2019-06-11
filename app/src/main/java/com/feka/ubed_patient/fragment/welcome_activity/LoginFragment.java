@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +15,22 @@ import android.widget.Toast;
 
 import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.List;
 import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
     private loginListener listener;
     public interface loginListener{
-        void onSuccessLogin();
+        void onSuccessLogin(User user);
     }
 
     Button loginBtn;
@@ -67,11 +72,30 @@ public class LoginFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(Objects.requireNonNull(task.getResult()).size() > 0){
-                    listener.onSuccessLogin();
+                    List<DocumentSnapshot> documents = task.getResult().getDocuments();
+                    DocumentSnapshot documentSnapshot = documents.get(0);
+                    User user = documentSnapshot.toObject(User.class);
+                    listener.onSuccessLogin(user);
                 }else
                     invalidMsg();
             }
         });
+
+//        DocumentReference docRef = BaseApplication.fireStoreDB.collection("users").
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                    } else {
+//                        Log.d(TAG, "No such document");
+//                    }
+//                } else {
+//                }
+//            }
+//        });
     }
 
     public void run_progress() {

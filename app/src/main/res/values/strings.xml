@@ -94,4 +94,8 @@
     <string name="feedback_rate">rate</string>
     <string name="feedback_review">write a review</string>
     <string name="feedback_btn">submit</string>
+
+    <!--Signout-->
+    <string name="signout_descr">Are you sure you want to sign out?</string>
+    <string name="signout_btn">sign out</string>
 </resources>

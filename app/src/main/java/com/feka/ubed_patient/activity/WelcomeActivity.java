@@ -6,13 +6,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.fragment.welcome_activity.LoginFragment;
 import com.feka.ubed_patient.fragment.welcome_activity.RegisterFragment;
 import com.feka.ubed_patient.fragment.welcome_activity.WelcomeFragment;
+import com.feka.ubed_patient.model.User;
 import com.feka.ubed_patient.utils.SPUtils;
+import com.google.gson.Gson;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -57,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity implements
     }
 
     private boolean isLogin() {
-        return SPUtils.getInstance().getSP().getBoolean("USER_EXISTS", true);
+        return SPUtils.getInstance().getSP().getBoolean(Constant.USER_EXISTS, false);
     }
 
     @Override
@@ -79,7 +83,13 @@ public class WelcomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onSuccessLogin() {
+    public void onSuccessLogin(User user) {
+        Gson gson = new Gson();
+        String userJson = gson.toJson(user);
+        Log.e("User", userJson);
+        SPUtils.getInstance().getSPE().putString(Constant.USER_JSON, userJson);
+        SPUtils.getInstance().getSPE().putBoolean(Constant.USER_EXISTS, true);
+        SPUtils.getInstance().getSPE().apply();
         toBaseActivity();
     }
 
