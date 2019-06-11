@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.model.Appointment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,14 @@ import java.util.List;
 public class AppointmentAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> mData;
+    private List<Appointment> mData;
 
-    public AppointmentAdapter(Context mContext, List<String> mData) {
+    public AppointmentAdapter(Context mContext, List<Appointment> mData) {
         this.mContext = mContext;
         this.mData = new ArrayList<>(mData);
     }
 
-    public void updateAdapter(List<String> mData) {
+    public void updateAdapter(List<Appointment> mData) {
         this.mData = new ArrayList<>(mData);
         notifyDataSetChanged();
     }

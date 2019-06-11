@@ -26,7 +26,8 @@
                 android:hint="@string/bed_form_patient_id"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:autofillHints="" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/form_bed_specialist"
+                android:id="@+id/form_bed_department"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_specialist"

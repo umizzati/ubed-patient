@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.feka.ubed_patient.R;
+import com.feka.ubed_patient.model.Bed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,14 @@ import java.util.List;
 public class BedAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> mData;
+    private List<Bed> mData;
 
-    public BedAdapter(Context mContext, List<String> mData) {
+    public BedAdapter(Context mContext, List<Bed> mData) {
         this.mContext = mContext;
         this.mData = new ArrayList<>(mData);
     }
 
-    public void updateAdapter(List<String> mData) {
+    public void updateAdapter(List<Bed> mData) {
         this.mData = new ArrayList<>(mData);
         notifyDataSetChanged();
     }

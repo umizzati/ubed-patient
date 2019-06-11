@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bed_form_description"
+            android:text="@string/appointment_description"
             android:textSize="18sp"
             android:layout_marginBottom="15dp"/>
 
@@ -20,22 +20,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/form_bed_patient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/bed_form_patient_id"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/form_bed_specialist"
+                android:id="@+id/form_specialist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_specialist"
@@ -50,7 +35,22 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/form_bed_date"
+                android:id="@+id/form_doctors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/appointment_doctor"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_date"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/form_bed_note"
+                android:id="@+id/form_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_note"
@@ -75,7 +75,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/bedBookBtn"
+            android:id="@+id/form_book_btn"
             style="?android:textAppearanceSmall"
             android:layout_width="120dp"
             android:layout_height="50dp"
@@ -88,7 +88,7 @@
             android:textStyle="bold" />
 
         <FrameLayout
-            android:id="@+id/bedProgressbarBtn"
+            android:id="@+id/form_progressbar"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
@@ -97,7 +97,6 @@
             android:layout_marginTop="16dp">
 
             <ProgressBar
-                android:id="@+id/bedProgressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

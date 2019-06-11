@@ -27,6 +27,7 @@ public class BaseActivity extends AppCompatActivity implements
     BedFragment bedFragment;
     AppointmentFragment appointmentFragment;
     SettingFragment settingFragment;
+    BottomNavigationView navView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,7 +66,7 @@ public class BaseActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -85,14 +86,41 @@ public class BaseActivity extends AppCompatActivity implements
                 .commit();
     }
 
-
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction() {
 
     }
 
     @Override
-    public void onFragmentInteraction() {
+    public void onHomeAppointment() {
+        navView.setSelectedItemId(R.id.navigation_appointment);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.basePlaceholder, appointmentFragment)
+                .commit();
+    }
+
+    @Override
+    public void onHomeBed() {
+        navView.setSelectedItemId(R.id.navigation_bed);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.basePlaceholder, bedFragment)
+                .commit();
+    }
+
+    @Override
+    public void onHomeAboutUs() {
+
+    }
+
+    @Override
+    public void onHomeFeedback() {
+
+    }
+
+    @Override
+    public void onSignOut() {
 
     }
 }

@@ -56,10 +56,42 @@
     <string name="home_signout">Sign Out</string>
 
     <!--Bed-form-->
-    <string name="bed_form_description">Booking a bed</string>
+    <string name="bed_form_description">Bed booking</string>
     <string name="bed_form_patient_id">Patient ID</string>
-    <string name="bed_form_department">Department</string>
+    <string name="bed_form_specialist">Specialist</string>
     <string name="bed_form_date">Date</string>
     <string name="bed_form_note">Note</string>
     <string name="bed_form_btn">book</string>
+
+    <!--Appointment-form-->
+    <string name="appointment_description">Appointment</string>
+    <string name="appointment_specialist">Specialist</string>
+    <string name="appointment_doctor">Doctor</string>
+    <string name="appointment_date">Date</string>
+
+    <!--specialists list-->
+    <string-array name="specialist_array">
+        <item>Paediatrics</item>
+        <item>Orthopaedics</item>
+        <item>Ear nose and throat (ENT)</item>
+        <item>Neurology</item>
+        <item>Nutrition and Dietetics</item>
+        <item>Obstetrics and Gynecology</item>
+        <item>Radiology</item>
+        <item>Urology</item>
+    </string-array>
+
+    <!--doctors list-->
+    <string-array name="doctor_array">
+        <item>Dr. Ahmad Azmi</item>
+        <item>Dr. Chan Yei Ling</item>
+        <item>Datin Dr. Koshiela Parnamala</item>
+        <item>Dr. Robenna Antony</item>
+    </string-array>
+
+    <!--Feedback-->
+    <string name="feedback_title">Feedback</string>
+    <string name="feedback_rate">rate</string>
+    <string name="feedback_review">write a review</string>
+    <string name="feedback_btn">submit</string>
 </resources>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,66 +12,29 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bed_form_description"
+            android:text="@string/feedback_title"
             android:textSize="18sp"
             android:layout_marginBottom="15dp"/>
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/form_bed_patient"
+                android:id="@+id/feedback_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/bed_form_patient_id"
+                android:hint="@string/feedback_review"
                 android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/form_bed_specialist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/bed_form_specialist"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/form_bed_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/bed_form_date"
-                android:ems="10"
-                android:inputType="date" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/form_bed_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/bed_form_note"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +46,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="16dp"
             android:background="@drawable/roundedbutton"
-            android:text="@string/bed_form_btn"
+            android:text="@string/feedback_btn"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textStyle="bold" />
@@ -107,4 +71,5 @@
                 android:indeterminateTintMode="src_atop" />
         </FrameLayout>
     </LinearLayout>
+
 </ScrollView>
