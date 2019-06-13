@@ -1,24 +1,27 @@
 package com.feka.ubed_patient.activity;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.widget.TextView;
-
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.fragment.main_activity.AppointmentFragment;
 import com.feka.ubed_patient.fragment.main_activity.BedFragment;
 import com.feka.ubed_patient.fragment.main_activity.HomeFragment;
+import com.feka.ubed_patient.fragment.main_activity.ReviewFragment;
 import com.feka.ubed_patient.fragment.main_activity.SettingFragment;
+import com.feka.ubed_patient.model.User;
 import com.feka.ubed_patient.utils.SPUtils;
+import com.google.gson.Gson;
 
 import java.util.Objects;
 
@@ -27,13 +30,15 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 public class BaseActivity extends AppCompatActivity implements
         HomeFragment.OnFragmentInteractionListener,
         BedFragment.OnFragmentInteractionListener,
-        AppointmentFragment.OnFragmentInteractionListener{
-    private TextView mTextMessage;
+        AppointmentFragment.OnFragmentInteractionListener,
+        ReviewFragment.OnFragmentInteractionListener {
     HomeFragment homeFragment;
     BedFragment bedFragment;
     AppointmentFragment appointmentFragment;
+    ReviewFragment reviewFragment;
     SettingFragment settingFragment;
     BottomNavigationView navView;
+    public static User user;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,6 +57,10 @@ public class BaseActivity extends AppCompatActivity implements
                 case R.id.navigation_appointment:
                     Objects.requireNonNull(getSupportActionBar()).setTitle("Appointment");
                     updatePage(appointmentFragment);
+                    return true;
+                case R.id.navigation_review:
+                    Objects.requireNonNull(getSupportActionBar()).setTitle("Review");
+                    updatePage(reviewFragment);
                     return true;
             }
             return false;
@@ -76,15 +85,19 @@ public class BaseActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         homeFragment = new HomeFragment();
         bedFragment = new BedFragment();
         appointmentFragment = new AppointmentFragment();
         settingFragment = new SettingFragment();
+        reviewFragment = new ReviewFragment();
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+
+        Gson gson = new Gson();
+        String user_json = SPUtils.getInstance().getSP().getString(Constant.USER_JSON, "");
+        user = gson.fromJson(user_json, User.class);
     }
 
     @Override
@@ -125,8 +138,13 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onHomeFeedback() {
+    public void onSuccessFeedback() {
+        Toast.makeText(this, "Thank you for your review!", Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    public void onFailedFeedback() {
+        Toast.makeText(this, "Something when wrong. Please check your connection!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -143,4 +161,5 @@ public class BaseActivity extends AppCompatActivity implements
         }, 2000);
 
     }
+
 }

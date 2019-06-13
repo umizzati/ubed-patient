@@ -47,6 +47,7 @@
     <string name="title_home">Home</string>
     <string name="title_bed">UBed</string>
     <string name="title_appointment">Appointment</string>
+    <string name="title_review">Review</string>
 
     <!--HomeFragment-->
     <string name="home_bed">UBed</string>

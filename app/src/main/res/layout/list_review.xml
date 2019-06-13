@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <TextView
+        android:id="@+id/review_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Umi"
+        style="@style/listHeader" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <RatingBar
+            android:id="@+id/review_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/12/2019"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/review_note"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descriptions...."
+        android:paddingBottom="15dp"
+        />
+
+</LinearLayout>
