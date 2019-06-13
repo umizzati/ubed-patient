@@ -19,6 +19,6 @@
     <item
         android:id="@+id/navigation_review"
         android:icon="@drawable/ic_menu_gallery"
-        android:title="@string/title_appointment" />
+        android:title="@string/title_review" />
 
 </menu>

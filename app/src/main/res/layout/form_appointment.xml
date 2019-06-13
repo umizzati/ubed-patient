@@ -55,7 +55,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_date"
                 android:ems="10"
-                android:inputType="date" />
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="false" />
 
         </android.support.design.widget.TextInputLayout>
 

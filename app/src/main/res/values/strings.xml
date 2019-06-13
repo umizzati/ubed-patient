@@ -71,6 +71,7 @@
     <string name="appointment_date">Date</string>
 
     <!--specialists list-->
+    <string name="specialist_prompt">Choose specialist</string>
     <string-array name="specialist_array">
         <item>Paediatrics</item>
         <item>Orthopaedics</item>
@@ -83,6 +84,7 @@
     </string-array>
 
     <!--doctors list-->
+    <string name="doctor_prompt">Choose doctor</string>
     <string-array name="doctor_array">
         <item>Dr. Ahmad Azmi</item>
         <item>Dr. Chan Yei Ling</item>

@@ -162,4 +162,13 @@ public class BaseActivity extends AppCompatActivity implements
 
     }
 
+    @Override
+    public void onSuccessAddBed() {
+        Toast.makeText(this, "Your bed booking was created!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailedAddBed() {
+        Toast.makeText(this, "Something when wrong. Please contact administration!", Toast.LENGTH_LONG).show();
+    }
 }

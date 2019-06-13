@@ -30,20 +30,32 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical"
+            >
 
-            <EditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/specialist_prompt"
+                style="@style/TextView.InputLabel"
+                />
+
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/form_bed_specialist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/bed_form_specialist"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:spinnerMode="dialog"
+                android:entries="@array/specialist_array"
+                android:prompt="@string/specialist_prompt"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
 
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -55,7 +67,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_date"
                 android:ems="10"
-                android:inputType="date" />
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="false" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +103,7 @@
             android:textStyle="bold" />
 
         <FrameLayout
-            android:id="@+id/bedProgressbarBtn"
+            android:id="@+id/bed_progress_btn"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
@@ -97,7 +112,6 @@
             android:layout_marginTop="16dp">
 
             <ProgressBar
-                android:id="@+id/bedProgressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

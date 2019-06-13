@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class ReviewFragment extends Fragment {
     private ReviewAdapter mReviewAdapter;
     private User mCurrentUser;
     private ListView mListView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public ReviewFragment() {
         // Required empty public constructor
@@ -48,8 +50,16 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_review, container, false);
         mListView = v.findViewById(R.id.review_listview);
+        swipeRefreshLayout = v.findViewById(R.id.reviewSwipeRefreshLayout);
+
         mReviewAdapter = new ReviewAdapter(getContext(), mReviewList);
         mListView.setAdapter(mReviewAdapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshReview();
+            }
+        });
 
         refreshReview();
         updateReviewList();
@@ -65,6 +75,7 @@ public class ReviewFragment extends Fragment {
                     mReviewList = (ArrayList<Review>) task.getResult().toObjects(Review.class);
                     mReviewAdapter.updateAdapter(mReviewList);
                 }
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

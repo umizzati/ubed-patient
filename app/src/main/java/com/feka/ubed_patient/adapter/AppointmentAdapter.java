@@ -51,4 +51,8 @@ public class AppointmentAdapter extends BaseAdapter {
         }
         return convertView;
     }
+
+    private void viewHolder() {
+
+    }
 }

@@ -61,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity implements
     }
 
     private boolean isLogin() {
-        return SPUtils.getInstance().getSP().getBoolean(Constant.USER_EXISTS, false);
+        return SPUtils.getInstance().getSP().getBoolean(Constant.USER_EXISTS, true);
     }
 
     @Override
