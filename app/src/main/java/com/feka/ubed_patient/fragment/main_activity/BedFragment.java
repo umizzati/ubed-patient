@@ -105,11 +105,48 @@ public class BedFragment extends Fragment {
 
         };
 
-        updatBedsList();
-        getBeds();
+        Query query;
+        if (mCurrentUser.isAdmin()){
+            query = BaseApplication.fireStoreDB.collection("beds");
+        }else{
+            query = BaseApplication.fireStoreDB.collection("beds").whereEqualTo("user_id", mCurrentUser.getUser_id());
+        }
+
+        updateBedsList(query);
+        getBeds(query);
 
         return v;
     }
+
+    private void getBeds(Query query) {
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(Objects.requireNonNull(task.getResult()).size() > 0){
+                    mBedList = (ArrayList<Bed>) task.getResult().toObjects(Bed.class);
+                    mBedAdapter.updateAdapter(mBedList);
+                }
+            }
+        });
+    }
+
+    private void updateBedsList(Query query){
+        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    return;
+                }
+
+                if (snapshot != null) {
+                    mBedList = (ArrayList<Bed>) snapshot.toObjects(Bed.class);
+                    mBedAdapter.updateAdapter(mBedList);
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -146,7 +183,7 @@ public class BedFragment extends Fragment {
             public void onClick(View v) {
                 bookBtn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                Bed bed = new Bed(mCurrentUser.getName(), "1234", patient_id.getText().toString(), specialistSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
+                Bed bed = new Bed(mCurrentUser.getName(), mCurrentUser.getUser_id(), patient_id.getText().toString(), specialistSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
                 CreateNewBed(bed);
             }
         });
@@ -188,37 +225,6 @@ public class BedFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dateET.setText(sdf.format(myCalendar.getTime()));
-    }
-
-    private void getBeds() {
-        Query query = BaseApplication.fireStoreDB.collection("beds");
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(Objects.requireNonNull(task.getResult()).size() > 0){
-                    mBedList = (ArrayList<Bed>) task.getResult().toObjects(Bed.class);
-                    mBedAdapter.updateAdapter(mBedList);
-                }
-            }
-        });
-    }
-
-    private void updatBedsList(){
-        final Query query = BaseApplication.fireStoreDB.collection("beds");
-        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-
-                if (snapshot != null) {
-                    mBedList = (ArrayList<Bed>) snapshot.toObjects(Bed.class);
-                    mBedAdapter.updateAdapter(mBedList);
-                }
-            }
-        });
     }
 
 }

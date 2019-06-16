@@ -110,11 +110,6 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentInteraction() {
-
-    }
-
-    @Override
     public void onHomeAppointment() {
         navView.setSelectedItemId(R.id.navigation_appointment);
         getSupportFragmentManager()
@@ -169,6 +164,16 @@ public class BaseActivity extends AppCompatActivity implements
 
     @Override
     public void onFailedAddBed() {
+        Toast.makeText(this, "Something when wrong. Please contact administration!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSuccessAddApp() {
+        Toast.makeText(this, "Your appointment booking was created!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailedAddApp() {
         Toast.makeText(this, "Something when wrong. Please contact administration!", Toast.LENGTH_LONG).show();
     }
 }

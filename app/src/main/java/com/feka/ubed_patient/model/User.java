@@ -3,11 +3,12 @@ package com.feka.ubed_patient.model;
 public class User {
 
     private String name;
+    private String user_id;
     private String email;
     private String password;
     private String tel_num;
     private String ic_num;
-    private boolean isPatient;
+    private boolean isAdmin;
     private boolean isActive;
     private long created;
     private long updated;
@@ -15,13 +16,13 @@ public class User {
     public User() {
 
     }
-    public User(String name, String email, String tel_num, String ic_num, String password, boolean isPatient, boolean isActive, long created, long updated) {
+    public User(String name, String email, String tel_num, String ic_num, String password, boolean isActive, long created, long updated) {
         this.name = name;
         this.email = email;
         this.tel_num = tel_num;
         this.ic_num = ic_num;
         this.password = password;
-        this.isPatient = isPatient;
+        this.isAdmin = false;
         this.isActive = isActive;
         this.created = created;
         this.updated = updated;
@@ -67,14 +68,6 @@ public class User {
         this.password = password;
     }
 
-    public boolean isPatient() {
-        return isPatient;
-    }
-
-    public void setPatient(boolean patient) {
-        isPatient = patient;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -97,5 +90,21 @@ public class User {
 
     public void setUpdated(int updated) {
         this.updated = updated;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

@@ -137,6 +137,7 @@ public class HomeFragment extends Fragment {
                 btn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 Review review = new Review(BaseActivity.user.getName(), editText.getText().toString(), ratingBar.getRating());
+                review.setUser_id(BaseActivity.user.getUser_id());
                 addNewReview(review);
             }
         });

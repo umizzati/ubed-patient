@@ -15,35 +15,59 @@
             android:textSize="18sp"
             android:layout_marginBottom="15dp"/>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical"
+            >
 
-            <EditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/specialist_prompt"
+                style="@style/TextView.InputLabel"
+                />
+
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/form_specialist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/bed_form_specialist"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:spinnerMode="dialog"
+                android:entries="@array/specialist_array"
+                android:prompt="@string/specialist_prompt"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
 
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical"
+            >
 
-            <EditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_prompt"
+                style="@style/TextView.InputLabel"
+                />
+
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/form_doctors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/appointment_doctor"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:spinnerMode="dialog"
+                android:entries="@array/doctor_array"
+                android:prompt="@string/doctor_prompt"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
 
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -53,7 +77,24 @@
                 android:id="@+id/form_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/bed_form_date"
+                android:hint="@string/appointment_date"
+                android:ems="10"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="false" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/form_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/appointment_time"
                 android:ems="10"
                 android:clickable="true"
                 android:cursorVisible="false"

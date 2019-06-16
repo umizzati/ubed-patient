@@ -74,7 +74,9 @@ public class LoginFragment extends Fragment {
                 if(Objects.requireNonNull(task.getResult()).size() > 0){
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
                     DocumentSnapshot documentSnapshot = documents.get(0);
+                    String user_id = documentSnapshot.getId();
                     User user = documentSnapshot.toObject(User.class);
+                    user.setUser_id(user_id);
                     listener.onSuccessLogin(user);
                 }else
                     invalidMsg();

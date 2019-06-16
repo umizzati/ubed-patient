@@ -60,7 +60,8 @@
     <string name="bed_form_description">Bed booking</string>
     <string name="bed_form_patient_id">Patient ID</string>
     <string name="bed_form_specialist">Specialist</string>
-    <string name="bed_form_date">Date</string>
+    <string name="bed_form_date">Select date</string>
+    <string name="bed_form_time">Select time</string>
     <string name="bed_form_note">Note</string>
     <string name="bed_form_btn">book</string>
 
@@ -68,7 +69,9 @@
     <string name="appointment_description">Appointment</string>
     <string name="appointment_specialist">Specialist</string>
     <string name="appointment_doctor">Doctor</string>
-    <string name="appointment_date">Date</string>
+    <string name="appointment_date">Select date</string>
+    <string name="appointment_time">Select time</string>
+
 
     <!--specialists list-->
     <string name="specialist_prompt">Choose specialist</string>

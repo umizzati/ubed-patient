@@ -4,19 +4,53 @@ import com.feka.ubed_patient.Constant;
 
 public class Appointment {
 
-    private String specialist;
+    private String user_name;
+    private String user_id;
     private String status;
+    private String specialist;
     private String doctor;
     private String note;
-    private long check_in;
-    private long check_out;
-    private boolean isRemove;
-    private long created_time;
-    private long updated_time;
+    private String date;
+    private String time;
 
-    public Appointment() {
+    public Appointment(String user_name, String user_id, String specialist, String doctor, String note, String date, String time) {
+        this.user_name = user_name;
+        this.user_id = user_id;
+        this.specialist = specialist;
+        this.doctor = doctor;
+        this.note = note;
+        this.date = date;
+        this.time = time;
         this.status = Constant.BOOKING_PENDING;
     }
+
+    public Appointment() {
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getSpecialist() {
         return specialist;
     }
@@ -49,45 +83,7 @@ public class Appointment {
         this.note = note;
     }
 
-    public long getCheck_in() {
-        return check_in;
+    public String getTime() {
+        return time;
     }
-
-    public void setCheck_in(long check_in) {
-        this.check_in = check_in;
-    }
-
-    public long getCheck_out() {
-        return check_out;
-    }
-
-    public void setCheck_out(long check_out) {
-        this.check_out = check_out;
-    }
-
-    public boolean isRemove() {
-        return isRemove;
-    }
-
-    public void setRemove(boolean remove) {
-        isRemove = remove;
-    }
-
-    public long getCreated_time() {
-        return created_time;
-    }
-
-    public void setCreated_time(long created_time) {
-        this.created_time = created_time;
-    }
-
-    public long getUpdated_time() {
-        return updated_time;
-    }
-
-    public void setUpdated_time(long updated_time) {
-        this.updated_time = updated_time;
-    }
-
-
 }

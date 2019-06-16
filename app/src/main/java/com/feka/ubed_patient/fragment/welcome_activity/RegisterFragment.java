@@ -66,7 +66,7 @@ public class RegisterFragment extends Fragment {
 
     private void onRegister() {
         long epoch = System.currentTimeMillis()/1000;
-        User users = new User(_name, _email, _tel_num, _no_ic, _password, true, true, epoch, epoch);
+        User users = new User(_name, _email, _tel_num, _no_ic, _password, true, epoch, epoch);
 
         BaseApplication.fireStoreDB.collection("users")
                 .add(users)

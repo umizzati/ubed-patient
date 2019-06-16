@@ -34,7 +34,7 @@ public class ReviewFragment extends Fragment {
     private ReviewAdapter mReviewAdapter;
     private User mCurrentUser;
     private ListView mListView;
-    private SwipeRefreshLayout swipeRefreshLayout;
+//    private SwipeRefreshLayout swipeRefreshLayout;
 
     public ReviewFragment() {
         // Required empty public constructor
@@ -50,24 +50,30 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_review, container, false);
         mListView = v.findViewById(R.id.review_listview);
-        swipeRefreshLayout = v.findViewById(R.id.reviewSwipeRefreshLayout);
+//        swipeRefreshLayout = v.findViewById(R.id.reviewSwipeRefreshLayout);
 
         mReviewAdapter = new ReviewAdapter(getContext(), mReviewList);
         mListView.setAdapter(mReviewAdapter);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshReview();
-            }
-        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                refreshReview();
+//            }
+//        });
 
-        refreshReview();
-        updateReviewList();
+        Query query;
+        if (mCurrentUser.isAdmin()){
+            query = BaseApplication.fireStoreDB.collection("reviews");
+        }else{
+            query = BaseApplication.fireStoreDB.collection("reviews").whereEqualTo("user_id", mCurrentUser.getUser_id());
+        }
+
+        refreshReview(query);
+        updateReviewList(query);
         return v;
     }
 
-    private void refreshReview() {
-        Query query = BaseApplication.fireStoreDB.collection("reviews");
+    private void refreshReview(Query query) {
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -75,13 +81,12 @@ public class ReviewFragment extends Fragment {
                     mReviewList = (ArrayList<Review>) task.getResult().toObjects(Review.class);
                     mReviewAdapter.updateAdapter(mReviewList);
                 }
-                swipeRefreshLayout.setRefreshing(false);
+//                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
-    private void updateReviewList(){
-        final Query query = BaseApplication.fireStoreDB.collection("reviews");
+    private void updateReviewList(Query query){
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshot,
