@@ -35,9 +35,9 @@
 
             <com.timqi.sectorprogressview.ColorfulRingProgressView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/bed_crv"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:id="@+id/bed_spv"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:bgColor="@color/colorLightPrimary"
                 app:fgColorEnd="@color/colorPrimary"
                 app:fgColorStart="@color/colorPrimary"
@@ -50,28 +50,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="bed left"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@id/bed_num"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/bed_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10/10"
-                android:textSize="12sp"
+                android:orientation="vertical"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_bed_num"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/bed_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10/20"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
         <!-- Doughnut chart ends here -->
 
@@ -86,9 +89,9 @@
             android:layout_marginStart="10dp">
 
             <com.timqi.sectorprogressview.ColorfulRingProgressView
-                android:id="@+id/app_crp"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:id="@+id/app_spv"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:bgColor="@color/colorLightPrimary"
                 app:fgColorEnd="@color/colorPrimary"
                 app:fgColorStart="@color/colorPrimary"
@@ -101,28 +104,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="appointment left"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@id/app_num"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/app_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10/20"
-                android:textSize="12sp"
+                android:orientation="vertical"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_app_num"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/app_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10/20"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
         </android.support.constraint.ConstraintLayout>
         <!-- Doughnut chart ends here -->
 
@@ -135,19 +142,21 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <!--<TextView-->
-            <!--android:id="@+id/home_ubed_btn"-->
-            <!--style="@style/listMenu"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/home_bed" />-->
+        <TextView
+            android:id="@+id/home_ubed_btn"
+            style="@style/listMenu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/home_bed" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/home_appointment_btn"-->
-            <!--style="@style/listMenu"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/home_appointment" />-->
+        <TextView
+            android:id="@+id/home_appointment_btn"
+            style="@style/listMenu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/home_appointment" />
 
 
         <TextView
@@ -157,12 +166,13 @@
             android:layout_height="wrap_content"
             android:text="@string/home_about_us" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/home_feedback_btn"-->
-            <!--style="@style/listMenu"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/home_feedback" />-->
+        <TextView
+            android:id="@+id/home_feedback_btn"
+            style="@style/listMenu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/home_feedback" />
 
         <TextView
             android:id="@+id/home_contact_us_btn"

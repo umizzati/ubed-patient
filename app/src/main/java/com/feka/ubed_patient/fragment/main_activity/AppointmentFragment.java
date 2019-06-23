@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.feka.ubed_patient.BaseApplication;
+import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.activity.BaseActivity;
 import com.feka.ubed_patient.adapter.AppointmentAdapter;
@@ -86,6 +89,19 @@ public class AppointmentFragment extends Fragment {
         TextView emptyTV = v.findViewById(R.id.appointment_empty);
         mAppointmentListView.setEmptyView(emptyTV);
 
+        //listview clicklistner
+        mAppointmentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Appointment app = mAppointmentList.get(position);
+                if (mCurrentUser.isAdmin()){
+                    adminAction(app);
+                }else{
+                    patientAction(app);
+                }
+            }
+        });
+
         //float button
         mAppointmentAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +138,9 @@ public class AppointmentFragment extends Fragment {
 
         Query query;
         if (mCurrentUser.isAdmin()){
-            query = BaseApplication.fireStoreDB.collection("appointments");
+            query = BaseApplication.fireStoreDB.collection("appointments").whereEqualTo("deleted", false);
         }else{
-            query = BaseApplication.fireStoreDB.collection("appointments").whereEqualTo("user_id", mCurrentUser.getUser_id());
+            query = BaseApplication.fireStoreDB.collection("appointments").whereEqualTo("deleted", false).whereEqualTo("user_id", mCurrentUser.getUser_id());
         }
 
         updateAppointmentList(query);
@@ -133,12 +149,80 @@ public class AppointmentFragment extends Fragment {
         return v;
     }
 
+    private void patientAction(final Appointment app) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        dialogBuilder
+                .setTitle(R.string.action_patient)
+                .setPositiveButton(R.string.action_discard, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onDiscardBed(app);
+                    }
+                })
+                .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+
+
+        mDialogForm = dialogBuilder.create();
+        mDialogForm.show();
+    }
+
+    private void onDiscardBed(Appointment app) {
+        BaseApplication.fireStoreDB
+                .collection("appointments")
+                .document(app.getId())
+                .update("deleted", true);
+        mDialogForm.dismiss();
+    }
+
+    private void adminAction(final Appointment app) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        dialogBuilder
+                .setTitle(R.string.action_admin)
+                .setPositiveButton(R.string.action_approve, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onApproveBed(app);
+                    }
+                })
+                .setNegativeButton(R.string.action_reject, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onRejectBed(app);
+                    }
+                });
+
+
+        mDialogForm = dialogBuilder.create();
+        mDialogForm.show();
+    }
+
+    private void onRejectBed(Appointment app) {
+        BaseApplication.fireStoreDB
+                .collection("appointments")
+                .document(app.getId())
+                .update("status", Constant.BOOKING_REJECTED);
+        mDialogForm.dismiss();
+    }
+
+    private void onApproveBed(Appointment app) {
+        BaseApplication.fireStoreDB
+                .collection("appointments")
+                .document(app.getId())
+                .update("status", Constant.BOOKING_APPROVED);
+        mDialogForm.dismiss();
+    }
+
     private void getAppointment(Query query) {
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(Objects.requireNonNull(task.getResult()).size() > 0){
                     mAppointmentList = (ArrayList<Appointment>) task.getResult().toObjects(Appointment.class);
+                    int index = 0;
+                    for(Appointment app : mAppointmentList){
+                        app.setId(task.getResult().getDocuments().get(index).getId());
+                        index++;
+                    }
                     mAppointmentAdapter.updateAdapter(mAppointmentList);
                 }
             }
@@ -156,6 +240,11 @@ public class AppointmentFragment extends Fragment {
 
                 if (snapshot != null) {
                     mAppointmentList = (ArrayList<Appointment>) snapshot.toObjects(Appointment.class);
+                    int index = 0;
+                    for(Appointment app : mAppointmentList){
+                        app.setId((snapshot.getDocuments().get(index).getId()));
+                        index++;
+                    }
                     mAppointmentAdapter.updateAdapter(mAppointmentList);
                 }
             }

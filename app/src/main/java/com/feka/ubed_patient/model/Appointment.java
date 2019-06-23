@@ -4,6 +4,8 @@ import com.feka.ubed_patient.Constant;
 
 public class Appointment {
 
+    private String id;
+    private boolean deleted;
     private String user_name;
     private String user_id;
     private String status;
@@ -22,6 +24,7 @@ public class Appointment {
         this.date = date;
         this.time = time;
         this.status = Constant.BOOKING_PENDING;
+        this.deleted = false;
     }
 
     public Appointment() {
@@ -83,7 +86,27 @@ public class Appointment {
         this.note = note;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public String getTime() {
         return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

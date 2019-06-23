@@ -58,6 +58,8 @@
     <string name="home_signout">Sign Out</string>
     <string name="home_contact">Contact Us</string>
     <string name="home_welcome">Welcome to UBed HTAR</string>
+    <string name="home_bed_num">Bed left</string>
+    <string name="home_app_num">Appointment left</string>
 
 
     <!--Bed-form-->
@@ -68,7 +70,7 @@
     <string name="bed_form_time">Select time</string>
     <string name="bed_form_note">Note</string>
     <string name="bed_form_btn">book</string>
-    <string name="bed_no_booking">You have no booking yet`</string>
+    <string name="bed_no_booking">You have no booking yet</string>
 
     <!--Appointment-form-->
     <string name="appointment_description">Appointment</string>
