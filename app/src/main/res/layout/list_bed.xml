@@ -17,6 +17,12 @@
         style="@style/listHeader"/>
 
     <TextView
+        android:id="@+id/bed_patient_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Patient A1234"/>
+
+    <TextView
         android:id="@+id/bed_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:id="@+id/bed_wad_type"
@@ -37,18 +43,20 @@
             android:textSize="14sp"
             android:layout_marginEnd="5dp"/>
 
-        <TextView
-            android:id="@+id/bed_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/status_pending"
-            android:text="Pending"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:textSize="14sp"
-            android:paddingStart="3dp"
-            android:paddingEnd="3dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/bed_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/status_pending"
+        android:text="Pending"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:id="@+id/bed_start_date"

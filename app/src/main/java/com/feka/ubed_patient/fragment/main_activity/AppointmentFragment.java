@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.feka.ubed_patient.BaseApplication;
@@ -81,6 +82,9 @@ public class AppointmentFragment extends Fragment {
 
         mAppointmentAdapter = new AppointmentAdapter(getContext(), mAppointmentList);
         mAppointmentListView.setAdapter(mAppointmentAdapter);
+
+        TextView emptyTV = v.findViewById(R.id.appointment_empty);
+        mAppointmentListView.setEmptyView(emptyTV);
 
         //float button
         mAppointmentAddBtn.setOnClickListener(new View.OnClickListener() {

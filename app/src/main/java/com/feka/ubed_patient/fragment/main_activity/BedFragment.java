@@ -3,22 +3,28 @@ package com.feka.ubed_patient.fragment.main_activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.feka.ubed_patient.BaseApplication;
+import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.activity.BaseActivity;
 import com.feka.ubed_patient.adapter.BedAdapter;
@@ -49,9 +55,9 @@ public class BedFragment extends Fragment {
     FloatingActionButton bedAddBtn;
     BedAdapter mBedAdapter;
     ArrayList<Bed> mBedList = new ArrayList<>();
-    DatePickerDialog.OnDateSetListener date;
+    DatePickerDialog.OnDateSetListener date, actionDateStart, actionDateEnd;
     Calendar myCalendar;
-    EditText dateET;
+    EditText dateET, dateStart, dateEnd;
     android.support.v7.widget.AppCompatSpinner specialistSpinner;
     User mCurrentUser;
 
@@ -78,8 +84,24 @@ public class BedFragment extends Fragment {
         bedListView = v.findViewById(R.id.bed_listview);
 
         // set list view and values
-        mBedAdapter = new BedAdapter(getActivity(), mBedList);
+        mBedAdapter = new BedAdapter(getActivity(), mBedList, mCurrentUser);
+
+        TextView emptyTv = v.findViewById(R.id.bed_empty);
         bedListView.setAdapter(mBedAdapter);
+        bedListView.setEmptyView(emptyTv);
+
+        //listview clicklistner
+        bedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bed bed = mBedList.get(position);
+                if (mCurrentUser.isAdmin()){
+                    adminAction(bed);
+                }else{
+                    patientAction(bed);
+                }
+            }
+        });
 
         // add bed view
         bedAddBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,11 +127,39 @@ public class BedFragment extends Fragment {
 
         };
 
+        actionDateStart = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateActionStart();
+            }
+
+        };
+
+        actionDateEnd = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateActionEnd();
+            }
+
+        };
+
         Query query;
         if (mCurrentUser.isAdmin()){
-            query = BaseApplication.fireStoreDB.collection("beds");
+            query = BaseApplication.fireStoreDB.collection("beds").whereEqualTo("deleted", false);
         }else{
-            query = BaseApplication.fireStoreDB.collection("beds").whereEqualTo("user_id", mCurrentUser.getUser_id());
+            query = BaseApplication.fireStoreDB.collection("beds").whereEqualTo("deleted", false).whereEqualTo("user_id", mCurrentUser.getUser_id());
         }
 
         updateBedsList(query);
@@ -124,6 +174,11 @@ public class BedFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(Objects.requireNonNull(task.getResult()).size() > 0){
                     mBedList = (ArrayList<Bed>) task.getResult().toObjects(Bed.class);
+                    int index = 0;
+                    for(Bed bed : mBedList){
+                        bed.setId(task.getResult().getDocuments().get(index).getId());
+                        index++;
+                    }
                     mBedAdapter.updateAdapter(mBedList);
                 }
             }
@@ -141,6 +196,11 @@ public class BedFragment extends Fragment {
 
                 if (snapshot != null) {
                     mBedList = (ArrayList<Bed>) snapshot.toObjects(Bed.class);
+                    int index = 0;
+                    for(Bed bed : mBedList){
+                        bed.setId(snapshot.getDocuments().get(index).getId());
+                        index++;
+                    }
                     mBedAdapter.updateAdapter(mBedList);
                 }
             }
@@ -225,6 +285,115 @@ public class BedFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dateET.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateActionStart() {
+        String myFormat = "EEE, dd MMMM yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        dateStart.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateActionEnd() {
+        String myFormat = "EEE, dd MMMM yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        dateEnd.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void adminAction(final Bed bed) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.action_bed_admin, null);
+        final EditText bedId = dialogView.findViewById(R.id.admin_bed_name);
+        dateStart = dialogView.findViewById(R.id.admin_start_date);
+        dateEnd = dialogView.findViewById(R.id.admin_end_date);
+        dialogBuilder.setView(dialogView);
+
+        dateStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(Objects.requireNonNull(getActivity()), actionDateStart, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        dateEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(Objects.requireNonNull(getActivity()), actionDateEnd, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        dialogBuilder
+                .setTitle(R.string.action_admin)
+                .setPositiveButton(R.string.action_approve, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (!dateStart.getText().toString().isEmpty()){
+                            bed.setCheck_in(dateStart.getText().toString());
+                        }
+                        bed.setCheck_out(dateEnd.getText().toString());
+                        bed.setBed_name(bedId.getText().toString());
+                        onApproveBed(bed);
+                    }
+                })
+                .setNegativeButton(R.string.action_reject, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onRejectBed(bed);
+                    }
+                });
+
+        mDialogForm = dialogBuilder.create();
+        mDialogForm.show();
+    }
+
+    private void patientAction(final Bed bed) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        dialogBuilder
+                .setTitle(R.string.action_patient)
+                .setPositiveButton(R.string.action_discard, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onDiscardBed(bed);
+                    }
+                })
+                .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+
+
+        mDialogForm = dialogBuilder.create();
+        mDialogForm.show();
+    }
+
+    private void onApproveBed(Bed bed) {
+        BaseApplication.fireStoreDB
+                .collection("beds")
+                .document(bed.getId())
+                .update("status", Constant.BOOKING_APPROVED,
+                        "check_in", bed.getCheck_in(),
+                        "check_out", bed.getCheck_in(),
+                        "bed_name", bed.getBed_name());
+        mDialogForm.dismiss();
+    }
+
+    private void onRejectBed(Bed bed){
+        BaseApplication.fireStoreDB
+                .collection("beds")
+                .document(bed.getId())
+                .update("status", Constant.BOOKING_REJECTED);
+        mDialogForm.dismiss();
+    }
+
+    private void onDiscardBed(Bed bed) {
+        BaseApplication.fireStoreDB
+                .collection("beds")
+                .document(bed.getId())
+                .update("deleted", true);
+        mDialogForm.dismiss();
     }
 
 }

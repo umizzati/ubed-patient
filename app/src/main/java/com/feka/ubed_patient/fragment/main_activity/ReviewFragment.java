@@ -32,7 +32,7 @@ public class ReviewFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ArrayList<Review> mReviewList = new ArrayList<>();
     private ReviewAdapter mReviewAdapter;
-    private User mCurrentUser;
+    User mCurrentUser;
     private ListView mListView;
 //    private SwipeRefreshLayout swipeRefreshLayout;
 

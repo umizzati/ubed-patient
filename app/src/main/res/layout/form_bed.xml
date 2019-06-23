@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/bed_form_patient_id"
                 android:inputType="text"
+                android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -51,7 +52,36 @@
                 android:layout_height="wrap_content"
                 android:spinnerMode="dialog"
                 android:entries="@array/specialist_array"
+                android:imeOptions="actionNext"
                 android:prompt="@string/specialist_prompt"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ward_prompt"
+                style="@style/TextView.InputLabel"
+                />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/form_bed_ward_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:entries="@array/ward_array"
+                android:prompt="@string/ward_prompt"
+                android:imeOptions="actionNext"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 />
 
@@ -69,6 +99,7 @@
                 android:ems="10"
                 android:clickable="true"
                 android:cursorVisible="false"
+                android:imeOptions="actionNext"
                 android:focusable="true"
                 android:focusableInTouchMode="false" />
 
@@ -82,6 +113,7 @@
                 android:id="@+id/form_bed_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:hint="@string/bed_form_note"
                 android:ems="10"
                 android:gravity="start|top"

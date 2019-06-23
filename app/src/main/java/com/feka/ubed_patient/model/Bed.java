@@ -13,6 +13,7 @@ public class Bed {
     private String note;
     private String check_in;
     private String check_out;
+    private boolean deleted;
 
     public Bed(String user_name, String user_id, String patient_id, String specialist, String check_in, String note) {
         this.user_name = user_name;
@@ -22,6 +23,7 @@ public class Bed {
         this.note = note;
         this.check_in = check_in;
         this.status = Constant.BOOKING_PENDING;
+        this.deleted = false;
     }
 
     public Bed() {
@@ -105,5 +107,13 @@ public class Bed {
 
     public void setCheck_out(String check_out) {
         this.check_out = check_out;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

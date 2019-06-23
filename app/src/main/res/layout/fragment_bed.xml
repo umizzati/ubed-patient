@@ -7,25 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".fragment.main_activity.BedFragment">
 
-    <ListView
-        android:id="@+id/bed_listview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:orientation="vertical" >
 
-    </ListView>
+        <ListView
+            android:id="@+id/bed_listview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:dividerHeight="1dp" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/bed_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="@string/bed_no_booking" />
+
+    </LinearLayout>
+
+
+    <!--<ListView-->
+        <!--android:id="@+id/bed_listview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.0"-->
+        <!--android:visibility="gone">-->
+
+    <!--</ListView>-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/bed_add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="30dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_input_add"

@@ -13,6 +13,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Login</string>
+
     <!-- Strings related to signup -->
     <string name="prompt_name">Name</string>
     <string name="prompt_ic">No. IC</string>
@@ -64,6 +65,7 @@
     <string name="bed_form_time">Select time</string>
     <string name="bed_form_note">Note</string>
     <string name="bed_form_btn">book</string>
+    <string name="bed_no_booking">You have no booking yet`</string>
 
     <!--Appointment-form-->
     <string name="appointment_description">Appointment</string>
@@ -95,6 +97,13 @@
         <item>Dr. Robenna Antony</item>
     </string-array>
 
+    <string name="ward_prompt">Choose ward class</string>
+    <string-array name="ward_array">
+        <item>Class A (RM 300.00)</item>
+        <item>Class B (RM 150.00)</item>
+        <item>Class C (RM 90.00)</item>
+    </string-array>
+
     <!--Feedback-->
     <string name="feedback_title">Feedback</string>
     <string name="feedback_rate">rate</string>
@@ -104,4 +113,18 @@
     <!--Signout-->
     <string name="signout_descr">Are you sure you want to sign out?</string>
     <string name="signout_btn">sign out</string>
+
+    <!--action-->
+    <string name="action_admin">Approve this booking?</string>
+    <string name="action_discard">Discard</string>
+    <string name="action_approve">Approve</string>
+    <string name="action_reject">Reject</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_patient">Discard this booking?</string>
+
+    <!--admin bed-->
+    <string name="admin_bed_name">Bed Id</string>
+    <string name="admin_bed_start">Start Date</string>
+    <string name="admin_bed_end">End Date</string>
+
 </resources>

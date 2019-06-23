@@ -43,11 +43,11 @@
                     android:hint="@string/prompt_name"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -62,7 +62,7 @@
                     android:hint="@string/prompt_tel_number"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="phone"
                     android:maxLines="1"
@@ -81,7 +81,7 @@
                     android:hint="@string/prompt_ic"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:maxLines="1"
@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -115,7 +116,7 @@
                     android:hint="@string/prompt_password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -134,7 +135,7 @@
                     android:hint="@string/prompt_confirm_password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true" />
