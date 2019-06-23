@@ -56,6 +56,9 @@
     <string name="home_about_us">About Us</string>
     <string name="home_feedback">Feedback</string>
     <string name="home_signout">Sign Out</string>
+    <string name="home_contact">Contact Us</string>
+    <string name="home_welcome">Welcome to UBed HTAR</string>
+
 
     <!--Bed-form-->
     <string name="bed_form_description">Bed booking</string>
