@@ -132,4 +132,7 @@
     <string name="admin_bed_start">Start Date</string>
     <string name="admin_bed_end">End Date</string>
 
+    <!--review fragment-->
+    <string name="review_empty">No feedback</string>
+
 </resources>

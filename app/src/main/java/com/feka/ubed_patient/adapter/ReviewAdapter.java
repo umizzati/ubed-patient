@@ -61,7 +61,7 @@ public class ReviewAdapter extends BaseAdapter {
         holder.name.setText(review.getUser_name());
         holder.rating.setRating(review.getRating());
         holder.reviews.setText(review.getReview_msg());
-//        holder.name.setText(review.getUser_name());
+        holder.date.setText(review.getDate());
         return convertView;
     }
 

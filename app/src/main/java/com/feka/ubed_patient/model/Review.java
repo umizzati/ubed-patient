@@ -5,12 +5,14 @@ public class Review {
     private String user_id;
     private String user_name;
     private String review_msg;
+    private String date;
     private float rating;
 
-    public Review(String user_name, String review_msg, float rating) {
+    public Review(String user_name, String review_msg, float rating, String date) {
         this.user_name = user_name;
         this.review_msg = review_msg;
         this.rating = rating;
+        this.date = date;
     }
 
     public String getUser_name() {
@@ -48,4 +50,11 @@ public class Review {
     public Review() {
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

@@ -59,7 +59,7 @@ public class BaseActivity extends AppCompatActivity implements
                     updatePage(appointmentFragment);
                     return true;
                 case R.id.navigation_review:
-                    Objects.requireNonNull(getSupportActionBar()).setTitle("Review");
+                    Objects.requireNonNull(getSupportActionBar()).setTitle("Feedback");
                     updatePage(reviewFragment);
                     return true;
             }
