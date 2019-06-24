@@ -7,18 +7,22 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_bed"
-        android:icon="@drawable/baseline_local_hotel_24"
-        android:title="@string/title_bed" />
+        android:id="@+id/navigation_about_us"
+        android:icon="@drawable/baseline_people_24"
+        android:title="About Us" />
 
     <item
-        android:id="@+id/navigation_appointment"
-        android:icon="@drawable/baseline_local_hospital_24"
-        android:title="@string/title_appointment" />
+        android:id="@+id/navigation_locate_us"
+        android:icon="@drawable/baseline_pin_drop_24"
+        android:title="Locate Us" />
 
     <item
         android:id="@+id/navigation_review"
-        android:icon="@drawable/baseline_rate_review_24"
+        android:icon="@drawable/baseline_feedback_24"
         android:title="@string/title_review" />
 
+    <item
+        android:id="@+id/navigation_signout"
+        android:icon="@drawable/baseline_exit_to_app_24"
+        android:title="Logout" />
 </menu>

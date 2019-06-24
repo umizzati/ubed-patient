@@ -33,6 +33,8 @@ public class WelcomeFragment extends Fragment{
     public interface welcomeListener{
         void onWelcomeLoginClick();
         void onWelcomeRegisterClick();
+        void onWelcomeBedClick();
+        void onWelcomeAppClick();
     }
 
 
@@ -54,6 +56,9 @@ public class WelcomeFragment extends Fragment{
         Button loginBtn = v.findViewById(R.id.welcomeLoginBtn);
         Button registerBtn = v.findViewById(R.id.welcomeRegisterBtn);
 
+        Button ubed = v.findViewById(R.id.ubed_btn);
+        Button appointment = v.findViewById(R.id.app_btn);
+
         bedNum = v.findViewById(R.id.bed_num);
         appNum = v.findViewById(R.id.app_num);
         bedSPV = v.findViewById(R.id.bed_spv);
@@ -70,6 +75,20 @@ public class WelcomeFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 listener.onWelcomeRegisterClick();
+            }
+        });
+
+        ubed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onWelcomeBedClick();
+            }
+        });
+
+        appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onWelcomeAppClick();
             }
         });
 

@@ -46,6 +46,8 @@ public class WelcomeActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+
         welcomeFragment = new WelcomeFragment();
         loginFragment = new LoginFragment();
         registerFragment = new RegisterFragment();
@@ -64,6 +66,7 @@ public class WelcomeActivity extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.navigation_1_home:
                     Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.welcomePlaceholder, welcomeFragment)
@@ -71,6 +74,7 @@ public class WelcomeActivity extends AppCompatActivity implements
                     return true;
                 case R.id.navigation_1_about_us:
                     Objects.requireNonNull(getSupportActionBar()).setTitle("About Us");
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.welcomePlaceholder, aboutUsFragment)
@@ -78,6 +82,7 @@ public class WelcomeActivity extends AppCompatActivity implements
                     return true;
                 case R.id.navigation_1_locate_us:
                     Objects.requireNonNull(getSupportActionBar()).setTitle("Locate Us");
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.welcomePlaceholder, locateUsFragment)
@@ -87,6 +92,13 @@ public class WelcomeActivity extends AppCompatActivity implements
             return false;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -169,5 +181,15 @@ public class WelcomeActivity extends AppCompatActivity implements
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onWelcomeAppClick() {
+
+    }
+
+    @Override
+    public void onWelcomeBedClick() {
+
     }
 }

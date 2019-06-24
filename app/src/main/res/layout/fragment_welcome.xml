@@ -23,33 +23,82 @@ tools:context=".fragment.welcome_activity.WelcomeFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/welcomeLoginBtn"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/roundedbutton"
-        android:text="@string/welcome_login"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/welcomeRegisterBtn"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/welcomeRegisterBtn"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="80dp"
+    <LinearLayout
+        android:id="@+id/btn_login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/roundedbutton2"
-        android:text="@string/welcome_register"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/welcomeLoginBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/welcomeLoginBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="78dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/roundedbutton"
+            android:text="@string/welcome_login"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/welcomeRegisterBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="80dp"
+            android:background="@drawable/roundedbutton2"
+            android:text="@string/welcome_register"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/ubed_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:padding="5dp"
+            android:layout_marginStart="78dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/roundedbutton"
+            android:text="@string/home_bed"
+            android:textColor="#ffffff"
+            android:drawableTop="@drawable/baseline_local_hotel_24"
+            android:drawableTint="#ffffff"/>
+
+        <Button
+            android:id="@+id/app_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:padding="5dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="80dp"
+            android:background="@drawable/roundedbutton"
+            android:text="@string/home_appointment"
+            android:textColor="#ffffff"
+            android:drawableTop="@drawable/baseline_date_range_24"
+            android:drawableTint="#ffffff"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
