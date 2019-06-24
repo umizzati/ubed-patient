@@ -2,6 +2,7 @@ package com.feka.ubed_patient.fragment.main_activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.activity.BaseActivity;
+import com.feka.ubed_patient.activity.ContactUs;
 import com.feka.ubed_patient.model.Count;
 import com.feka.ubed_patient.model.Review;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,7 +47,7 @@ public class HomeFragment extends Fragment {
     TextView mBed;
     TextView mAboutUs;
     TextView mFeedback;
-    TextView mSignOut;
+    TextView mSignOut, mContacUs;
     AlertDialog mDialogHome;
     ColorfulRingProgressView bedSPV, appSPV;
     TextView bedNum, appNum;
@@ -81,6 +83,7 @@ public class HomeFragment extends Fragment {
         mAboutUs = v.findViewById(R.id.home_aboutus_btn);
         mFeedback = v.findViewById(R.id.home_feedback_btn);
         mSignOut = v.findViewById(R.id.home_signout_btn);
+        mContacUs = v.findViewById(R.id.home_contact_us_btn);
         bedNum = v.findViewById(R.id.bed_num);
         appNum = v.findViewById(R.id.app_num);
         bedSPV = v.findViewById(R.id.bed_spv);
@@ -121,10 +124,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mContacUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onContactUs();
+            }
+        });
+
         updateProgressNum();
         getProgress();
-//        refreshProgress();
+
         return v;
+    }
+
+    private void onContactUs() {
+        startActivity(new Intent(getActivity(), ContactUs.class));
     }
 
     private void updateProgressNum() {
@@ -153,8 +167,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void refreshProgress() {
-    }
 
     private void getProgress() {
         //bed 

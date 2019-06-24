@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_1_home"
+        android:icon="@drawable/baseline_whatshot_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/navigation_1_about_us"
+        android:icon="@drawable/baseline_people_24"
+        android:title="About Us" />
+
+    <item
+        android:id="@+id/navigation_1_locate_us"
+        android:icon="@drawable/baseline_pin_drop_24"
+        android:title="Locate Us" />
+
+</menu>

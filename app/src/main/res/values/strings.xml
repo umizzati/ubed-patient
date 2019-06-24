@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UBED HTAR</string>
+    <string name="app_name">UBed HTAR</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -34,11 +34,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--WelcomeActivity-->
-    <string name="welcome_ubed">Welcome to Ubed!</string>
+    <string name="welcome_ubed">Welcome to UBed HTAR</string>
     <string name="welcome_login">Login</string>
     <string name="welcome_register">Register</string>
 
-    <string name="login_description">Login as Patient</string>
+    <string name="login_description">Login</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
 
@@ -59,7 +59,7 @@
     <string name="home_contact">Contact Us</string>
     <string name="home_welcome">Welcome to UBed HTAR</string>
     <string name="home_bed_num">Bed left</string>
-    <string name="home_app_num">Appointment left</string>
+    <string name="home_app_num">Appointment taken</string>
 
 
     <!--Bed-form-->
@@ -134,5 +134,12 @@
 
     <!--review fragment-->
     <string name="review_empty">No feedback</string>
+    <string name="title_activity_contact_us">Contact Us</string>
+
+    <!--contact us-->
+
+    <!--about us-->
+    <string name="about_us">Tengku Ampuan Rahimah Hospital (HTAR), Klang has been in operation since April 1985. It is a government hospital with more than 1000 patient beds and 20 clinical areas located in South Klang in the district of Klang, Selangor. The hospital provides major health services as well as the health care of selected national experts. The hospital is a major referral center for districts covering Klang, Sabak Bernam, Kuala Selangor and parts of Petaling and Kuala Langat.\n\nHTAR Klang Hospital also places medical instructional facilities for University of Malaya medical students and Management and Science University Malaysia (MSU).</string>
+
 
 </resources>

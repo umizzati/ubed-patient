@@ -133,7 +133,6 @@
         </android.support.constraint.ConstraintLayout>
         <!-- Doughnut chart ends here -->
 
-
     </LinearLayout>
 
     <LinearLayout
