@@ -29,18 +29,55 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/review_add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        android:focusable="true"
+        app:fab_addButtonColorNormal="@color/colorPrimary"
+        app:fab_addButtonColorPressed="@color/colorPrimary"
+        app:fab_addButtonPlusIconColor="#fff"
+        app:fab_labelsPosition="left"
+        app:fab_labelStyle="@style/menu_labels_style"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:tint="@android:color/white" />
+        android:tint="@android:color/white">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/survey_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#fff"
+            app:fab_size="mini"
+            android:src="@drawable/baseline_ballot_24"
+            app:fab_title="Survey"
+            app:fab_colorPressed="@color/colorPrimary"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/rate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#fff"
+            android:src="@drawable/baseline_feedback_24"
+            app:fab_size="mini"
+            app:fab_title="Rate Us"
+            app:fab_colorPressed="@color/colorPrimary"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/review_add_btn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:layout_marginBottom="30dp"-->
+        <!--android:clickable="true"-->
+        <!--android:focusable="true"-->
+        <!--android:src="@android:drawable/ic_input_add"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--android:tint="@android:color/white" />-->
 
 
 </android.support.constraint.ConstraintLayout>

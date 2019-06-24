@@ -2,10 +2,11 @@ package com.feka.ubed_patient.fragment.main_activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ import com.feka.ubed_patient.activity.BaseActivity;
 import com.feka.ubed_patient.adapter.ReviewAdapter;
 import com.feka.ubed_patient.model.Review;
 import com.feka.ubed_patient.model.User;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,7 +50,8 @@ public class ReviewFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ArrayList<Review> mReviewList = new ArrayList<>();
     private ReviewAdapter mReviewAdapter;
-    FloatingActionButton reviewAddBtn;
+    FloatingActionsMenu reviewAddBtn;
+    FloatingActionButton surveyBtn, rateBtn;
     User mCurrentUser;
     AlertDialog mDialogReview;
 
@@ -67,14 +71,25 @@ public class ReviewFragment extends Fragment {
         ListView mListView = v.findViewById(R.id.review_listview);
         TextView listEmpty = v.findViewById(R.id.review_empty);
         reviewAddBtn = v.findViewById(R.id.review_add_btn);
+        rateBtn = v.findViewById(R.id.rate_btn);
+        surveyBtn = v.findViewById(R.id.survey_btn);
         mReviewAdapter = new ReviewAdapter(getContext(), mReviewList);
         mListView.setAdapter(mReviewAdapter);
         mListView.setEmptyView(listEmpty);
 
-        reviewAddBtn.setOnClickListener(new View.OnClickListener() {
+        rateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reviewAddBtn.collapse();
                 initiateForm();
+            }
+        });
+
+        surveyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAddBtn.collapse();
+                mListener.onSurvey();
             }
         });
 
@@ -195,6 +210,7 @@ public class ReviewFragment extends Fragment {
         // TODO: Update argument type and name
         void onSuccessFeedback();
         void onFailedFeedback();
+        void onSurvey();
     }
 
 

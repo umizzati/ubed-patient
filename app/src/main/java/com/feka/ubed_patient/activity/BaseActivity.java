@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.BottomNavigationView;
@@ -182,6 +183,15 @@ public class BaseActivity extends AppCompatActivity implements
     @Override
     public void onFailedFeedback() {
         Toast.makeText(this, "Something when wrong. Please check your connection!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSurvey() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+        navView.setSelectedItemId(R.id.navigation_home);
+        Uri uriUrl = Uri.parse("http://bit.ly/feedback-ubed");
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 
     @Override

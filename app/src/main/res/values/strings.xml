@@ -110,7 +110,7 @@
     </string-array>
 
     <!--Feedback-->
-    <string name="feedback_title">Feedback</string>
+    <string name="feedback_title">Enjoying UBed App?</string>
     <string name="feedback_rate">rate</string>
     <string name="feedback_review">write a review</string>
     <string name="feedback_btn">submit</string>
