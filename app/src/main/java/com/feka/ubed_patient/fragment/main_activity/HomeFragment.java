@@ -213,7 +213,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateBedProgress() {
-//        appSPV.setPercent();
+        if (mCount != null){
+            float percent = (float) bedGetNum / mCount.get(1).getNumber() * 100;
+            bedSPV.setPercent(percent);
+            bedNum.setText(String.format("%d / %d", bedGetNum, mCount.get(1).getNumber()));
+        }
     }
 
     private void updateAppProgress() {

@@ -56,6 +56,7 @@ public class AppointmentAdapter extends BaseAdapter {
         holder.app_doctor = convertView.findViewById(R.id.appointment_doctor);
         holder.status = convertView.findViewById(R.id.appointment_status);
         holder.date_time = convertView.findViewById(R.id.appointment_date_time);
+        holder.app_patient = convertView.findViewById(R.id.appointment_patient_name);
 
         String app_id = String.format("# %03d", position+1);
         holder.app_id.setText(app_id);
@@ -71,6 +72,7 @@ public class AppointmentAdapter extends BaseAdapter {
         }
         String date_time = String.format("Date: %s at %s", app.getDate(), app.getTime());
         holder.date_time.setText(date_time);
+        holder.app_patient.setText(String.format("Patient: %s", app.getUser_name()));
         return convertView;
     }
 
@@ -78,6 +80,7 @@ public class AppointmentAdapter extends BaseAdapter {
         TextView app_id;
         TextView app_specialist;
         TextView app_doctor;
+        TextView app_patient;
         TextView status;
         TextView date_time;
     }

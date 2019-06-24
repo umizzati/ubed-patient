@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.R;
@@ -64,9 +65,11 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_review, container, false);
         ListView mListView = v.findViewById(R.id.review_listview);
+        TextView listEmpty = v.findViewById(R.id.review_empty);
         reviewAddBtn = v.findViewById(R.id.review_add_btn);
         mReviewAdapter = new ReviewAdapter(getContext(), mReviewList);
         mListView.setAdapter(mReviewAdapter);
+        mListView.setEmptyView(listEmpty);
 
         reviewAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,9 +80,9 @@ public class ReviewFragment extends Fragment {
 
         Query query;
         if (mCurrentUser.isAdmin()){
-            query = BaseApplication.fireStoreDB.collection("reviews");
+            query = BaseApplication.fireStoreDB.collection("feedbacks");
         }else{
-            query = BaseApplication.fireStoreDB.collection("reviews").whereEqualTo("user_id", mCurrentUser.getUser_id());
+            query = BaseApplication.fireStoreDB.collection("feedbacks").whereEqualTo("user_id", mCurrentUser.getUser_id());
         }
 
         refreshReview(query);
@@ -122,7 +125,7 @@ public class ReviewFragment extends Fragment {
     }
 
     private void addNewReview(Review review) {
-        BaseApplication.fireStoreDB.collection("reviews")
+        BaseApplication.fireStoreDB.collection("feedbacks")
                 .add(review)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
