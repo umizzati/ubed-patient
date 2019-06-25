@@ -8,6 +8,7 @@ public class Bed {
     private String user_id;
     private String user_name;
     private String bed_name;
+    private String bed_type;
     private String specialist;
     private String status;
     private String note;
@@ -15,10 +16,11 @@ public class Bed {
     private String check_out;
     private boolean deleted;
 
-    public Bed(String user_name, String user_id, String patient_id, String specialist, String check_in, String note) {
+    public Bed(String user_name, String user_id, String patient_id, String bed_type, String specialist, String check_in, String note) {
         this.user_name = user_name;
         this.user_id = user_id;
         this.patient_id = patient_id;
+        this.bed_type = bed_type;
         this.specialist = specialist;
         this.note = note;
         this.check_in = check_in;
@@ -115,5 +117,13 @@ public class Bed {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getBed_type() {
+        return bed_type;
+    }
+
+    public void setBed_type(String bed_type) {
+        this.bed_type = bed_type;
     }
 }

@@ -54,9 +54,10 @@ public class BedAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.list_bed, null);
         ViewHolder holder = new ViewHolder();
+        holder.patient_name = convertView.findViewById(R.id.bed_patient_name);
         holder.bed_id = convertView.findViewById(R.id.bed_id);
-        holder.patient_id = convertView.findViewById(R.id.bed_patient_id);
         holder.bed_name = convertView.findViewById(R.id.bed_name);
+        holder.bed_type = convertView.findViewById(R.id.bed_type);
         holder.specialist = convertView.findViewById(R.id.bed_wad_type);
         holder.status = convertView.findViewById(R.id.bed_status);
         holder.check_in = convertView.findViewById(R.id.bed_start_date);
@@ -64,6 +65,7 @@ public class BedAdapter extends BaseAdapter {
 
         holder.bed_id.setText("#" + String.format("%03d", position+1));
         holder.bed_name.setText(String.format("Bed: %s", bed.getBed_name()));
+        holder.bed_type.setText(String.format("Wad: %s", bed.getBed_type()));
         holder.specialist.setText(bed.getSpecialist());
         holder.status.setText(bed.getStatus());
         if (bed.getStatus().equals(Constant.BOOKING_APPROVED)){
@@ -74,12 +76,13 @@ public class BedAdapter extends BaseAdapter {
             holder.status.setBackground(mContext.getDrawable(R.drawable.status_pending));
         }
 
-        if (mUser.isAdmin()){
-            holder.patient_id.setVisibility(View.VISIBLE);
-            holder.patient_id.setText(String.format("Patient %s", bed.getPatient_id()));
-        }else{
-            holder.patient_id.setVisibility(View.GONE);
-        }
+//        if (mUser.isAdmin()){
+//            holder.patient_id.setVisibility(View.VISIBLE);
+//            holder.patient_id.setText(String.format("Patient %s", bed.getPatient_id()));
+//        }else{
+//            holder.patient_id.setVisibility(View.GONE);
+//        }
+        holder.patient_name.setText(String.format("Patient: %s", bed.getUser_name()));
         holder.check_in.setText(String.format("Start: %s", bed.getCheck_in()));
         holder.check_out.setText(String.format("End: %s", bed.getCheck_out()));
 
@@ -90,7 +93,9 @@ public class BedAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView bed_id;
         TextView patient_id;
+        TextView patient_name;
         TextView bed_name;
+        TextView bed_type;
         TextView specialist;
         TextView status;
         TextView check_in;

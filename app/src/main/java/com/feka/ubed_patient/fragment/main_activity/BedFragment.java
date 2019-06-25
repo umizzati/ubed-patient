@@ -58,7 +58,7 @@ public class BedFragment extends Fragment {
     DatePickerDialog.OnDateSetListener date, actionDateStart, actionDateEnd;
     Calendar myCalendar;
     EditText dateET, dateStart, dateEnd;
-    android.support.v7.widget.AppCompatSpinner specialistSpinner;
+    android.support.v7.widget.AppCompatSpinner specialistSpinner, bedTypeSpinner;
     User mCurrentUser;
 
     public interface OnFragmentInteractionListener {
@@ -236,6 +236,7 @@ public class BedFragment extends Fragment {
         final FrameLayout progressBar = dialogView.findViewById(R.id.bed_progress_btn);
         final EditText patient_id = dialogView.findViewById(R.id.form_bed_patient);
         specialistSpinner = dialogView.findViewById(R.id.form_bed_specialist);
+        bedTypeSpinner = dialogView.findViewById(R.id.form_bed_ward_class);
         dateET = dialogView.findViewById(R.id.form_bed_date);
         final EditText note = dialogView.findViewById(R.id.form_bed_note);
         bookBtn.setOnClickListener(new View.OnClickListener() {
@@ -243,7 +244,7 @@ public class BedFragment extends Fragment {
             public void onClick(View v) {
                 bookBtn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                Bed bed = new Bed(mCurrentUser.getName(), mCurrentUser.getUser_id(), patient_id.getText().toString(), specialistSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
+                Bed bed = new Bed(mCurrentUser.getName(), mCurrentUser.getUser_id(), patient_id.getText().toString(), bedTypeSpinner.getSelectedItem().toString() , specialistSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
                 CreateNewBed(bed);
             }
         });
@@ -375,7 +376,7 @@ public class BedFragment extends Fragment {
                 .document(bed.getId())
                 .update("status", Constant.BOOKING_APPROVED,
                         "check_in", bed.getCheck_in(),
-                        "check_out", bed.getCheck_in(),
+                        "check_out", bed.getCheck_out(),
                         "bed_name", bed.getBed_name());
         mDialogForm.dismiss();
     }
