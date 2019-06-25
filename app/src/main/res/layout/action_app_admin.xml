@@ -4,31 +4,16 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/admin_bed_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/admin_bed_name"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1"
-            android:singleLine="true" />
-
-    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/admin_start_date"
+            android:id="@+id/admin_app_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/admin_bed_start"
+            android:hint="@string/admin_app_date"
             android:imeOptions="actionNext"
             android:ems="10"
             android:clickable="true"
@@ -38,22 +23,22 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <!--<EditText-->
-            <!--android:id="@+id/admin_end_date"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/admin_bed_end"-->
-            <!--android:imeOptions="actionDone"-->
-            <!--android:ems="10"-->
-            <!--android:clickable="true"-->
-            <!--android:cursorVisible="false"-->
-            <!--android:focusable="true"-->
-            <!--android:focusableInTouchMode="false" />-->
+        <EditText
+            android:id="@+id/admin_app_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/admin_app_time"
+            android:imeOptions="actionDone"
+            android:ems="10"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="true"
+            android:focusableInTouchMode="false" />
 
-    <!--</android.support.design.widget.TextInputLayout>-->
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

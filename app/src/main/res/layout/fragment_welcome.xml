@@ -129,7 +129,7 @@ tools:context=".fragment.welcome_activity.WelcomeFragment">
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -181,6 +181,7 @@ tools:context=".fragment.welcome_activity.WelcomeFragment">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_bed_num"
+                    android:textAlignment="center"
                     android:textSize="10sp" />
 
                 <TextView
@@ -250,5 +251,34 @@ tools:context=".fragment.welcome_activity.WelcomeFragment">
         <!-- Doughnut chart ends here -->
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/welcome_hi"
+        fontPath="fonts/Montserrat-Bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutChart" />
+
+    <TextView
+        android:id="@+id/welcomeBedManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="176dp"
+        android:text="(Bed Manager)"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_hi" />
 
 </android.support.constraint.ConstraintLayout>

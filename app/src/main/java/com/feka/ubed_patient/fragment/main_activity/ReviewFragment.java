@@ -94,11 +94,12 @@ public class ReviewFragment extends Fragment {
         });
 
         Query query;
-        if (mCurrentUser.isAdmin()){
-            query = BaseApplication.fireStoreDB.collection("feedbacks");
-        }else{
-            query = BaseApplication.fireStoreDB.collection("feedbacks").whereEqualTo("user_id", mCurrentUser.getUser_id());
-        }
+        query = BaseApplication.fireStoreDB.collection("feedbacks");
+//        if (mCurrentUser.isAdmin()){
+//            query = BaseApplication.fireStoreDB.collection("feedbacks");
+//        }else{
+//            query = BaseApplication.fireStoreDB.collection("feedbacks").whereEqualTo("user_id", mCurrentUser.getUser_id());
+//        }
 
         refreshReview(query);
         updateReviewList(query);

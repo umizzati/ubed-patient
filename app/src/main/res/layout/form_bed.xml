@@ -87,6 +87,34 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_prompt"
+                style="@style/TextView.InputLabel"
+                />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/form_bed_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:entries="@array/doctor_array"
+                android:prompt="@string/doctor_prompt"
+                android:imeOptions="actionNext"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
+
+        </LinearLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

@@ -53,14 +53,16 @@ public class AppointmentFragment extends Fragment {
     AppointmentAdapter mAppointmentAdapter;
     AlertDialog mDialogForm;
     ArrayList<Appointment> mAppointmentList = new ArrayList<>();
-    DatePickerDialog.OnDateSetListener date;
+    DatePickerDialog.OnDateSetListener date, admindate;
     Calendar myCalendar;
     Calendar myCalendarTime;
-    TimePickerDialog.OnTimeSetListener time;
+    TimePickerDialog.OnTimeSetListener time, admintime;
     EditText dateET;
     EditText timeET;
     android.support.v7.widget.AppCompatSpinner doctorSpinner, specialistSpinner;
     User mCurrentUser;
+    EditText adminDate, adminTime;
+
     private int mHour, mMinute;
 
     public AppointmentFragment() {
@@ -127,12 +129,35 @@ public class AppointmentFragment extends Fragment {
 
         };
 
+        admindate = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateAdminLabel();
+            }
+
+        };
+
         time = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 myCalendarTime.set(Calendar.HOUR, hourOfDay);
                 myCalendarTime.set(Calendar.MINUTE, minute);
                 updateLabelTime();
+            }
+        };
+
+        admintime = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                myCalendarTime.set(Calendar.HOUR, hourOfDay);
+                myCalendarTime.set(Calendar.MINUTE, minute);
+                updateAdminTime();
             }
         };
 
@@ -178,6 +203,37 @@ public class AppointmentFragment extends Fragment {
 
     private void adminAction(final Appointment app) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.action_app_admin, null);
+        adminDate = dialogView.findViewById(R.id.admin_app_date);
+        adminTime = dialogView.findViewById(R.id.admin_app_time);
+        adminDate.setText(app.getDate());
+        adminTime.setText(app.getTime());
+
+        adminDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(Objects.requireNonNull(getActivity()), admindate, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        adminTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Time
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                new TimePickerDialog(getActivity(), admintime, mHour, mMinute, false).show();
+            }
+        });
+
+        dialogBuilder.setView(dialogView);
+
         dialogBuilder
                 .setTitle(R.string.action_admin)
                 .setPositiveButton(R.string.action_approve, new DialogInterface.OnClickListener() {
@@ -347,11 +403,25 @@ public class AppointmentFragment extends Fragment {
         dateET.setText(sdf.format(myCalendar.getTime()));
     }
 
+    private void updateAdminLabel() {
+        String myFormat = "EEE, dd MMM yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        adminDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
     private void updateLabelTime() {
         String myFormat = "h.mm a"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         timeET.setText(sdf.format(myCalendarTime.getTime()));
+    }
+
+    private void updateAdminTime() {
+        String myFormat = "h.mm a"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        adminTime.setText(sdf.format(myCalendarTime.getTime()));
     }
 
 }

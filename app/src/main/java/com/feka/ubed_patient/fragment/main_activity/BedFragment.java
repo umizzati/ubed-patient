@@ -58,7 +58,7 @@ public class BedFragment extends Fragment {
     DatePickerDialog.OnDateSetListener date, actionDateStart, actionDateEnd;
     Calendar myCalendar;
     EditText dateET, dateStart, dateEnd;
-    android.support.v7.widget.AppCompatSpinner specialistSpinner, bedTypeSpinner;
+    android.support.v7.widget.AppCompatSpinner specialistSpinner, bedTypeSpinner, doctorSpinner;
     User mCurrentUser;
 
     public interface OnFragmentInteractionListener {
@@ -237,6 +237,7 @@ public class BedFragment extends Fragment {
         final EditText patient_id = dialogView.findViewById(R.id.form_bed_patient);
         specialistSpinner = dialogView.findViewById(R.id.form_bed_specialist);
         bedTypeSpinner = dialogView.findViewById(R.id.form_bed_ward_class);
+        doctorSpinner = dialogView.findViewById(R.id.form_bed_doctor);
         dateET = dialogView.findViewById(R.id.form_bed_date);
         final EditText note = dialogView.findViewById(R.id.form_bed_note);
         bookBtn.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +245,7 @@ public class BedFragment extends Fragment {
             public void onClick(View v) {
                 bookBtn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                Bed bed = new Bed(mCurrentUser.getName(), mCurrentUser.getUser_id(), patient_id.getText().toString(), bedTypeSpinner.getSelectedItem().toString() , specialistSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
+                Bed bed = new Bed(mCurrentUser.getName(), mCurrentUser.getUser_id(), patient_id.getText().toString(), bedTypeSpinner.getSelectedItem().toString(), specialistSpinner.getSelectedItem().toString(), doctorSpinner.getSelectedItem().toString(), dateET.getText().toString(), note.getText().toString());
                 CreateNewBed(bed);
             }
         });
@@ -308,7 +309,8 @@ public class BedFragment extends Fragment {
         View dialogView = inflater.inflate(R.layout.action_bed_admin, null);
         final EditText bedId = dialogView.findViewById(R.id.admin_bed_name);
         dateStart = dialogView.findViewById(R.id.admin_start_date);
-        dateEnd = dialogView.findViewById(R.id.admin_end_date);
+        dateStart.setText(bed.getCheck_in());
+//        dateEnd = dialogView.findViewById(R.id.admin_end_date);
         dialogBuilder.setView(dialogView);
 
         dateStart.setOnClickListener(new View.OnClickListener() {
@@ -320,23 +322,20 @@ public class BedFragment extends Fragment {
             }
         });
 
-        dateEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(Objects.requireNonNull(getActivity()), actionDateEnd, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+//        dateEnd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new DatePickerDialog(Objects.requireNonNull(getActivity()), actionDateEnd, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//            }
+//        });
 
         dialogBuilder
                 .setTitle(R.string.action_admin)
                 .setPositiveButton(R.string.action_approve, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        if (!dateStart.getText().toString().isEmpty()){
-                            bed.setCheck_in(dateStart.getText().toString());
-                        }
-                        bed.setCheck_out(dateEnd.getText().toString());
+                        bed.setCheck_in(dateStart.getText().toString());
                         bed.setBed_name(bedId.getText().toString());
                         onApproveBed(bed);
                     }
@@ -376,7 +375,6 @@ public class BedFragment extends Fragment {
                 .document(bed.getId())
                 .update("status", Constant.BOOKING_APPROVED,
                         "check_in", bed.getCheck_in(),
-                        "check_out", bed.getCheck_out(),
                         "bed_name", bed.getBed_name());
         mDialogForm.dismiss();
     }

@@ -59,14 +59,16 @@ public class BedAdapter extends BaseAdapter {
         holder.bed_name = convertView.findViewById(R.id.bed_name);
         holder.bed_type = convertView.findViewById(R.id.bed_type);
         holder.specialist = convertView.findViewById(R.id.bed_wad_type);
+        holder.doctor = convertView.findViewById(R.id.bed_doctor);
         holder.status = convertView.findViewById(R.id.bed_status);
         holder.check_in = convertView.findViewById(R.id.bed_start_date);
-        holder.check_out = convertView.findViewById(R.id.bed_end_date);
+//        holder.check_out = convertView.findViewById(R.id.bed_end_date);
 
         holder.bed_id.setText("#" + String.format("%03d", position+1));
         holder.bed_name.setText(String.format("Bed: %s", bed.getBed_name()));
         holder.bed_type.setText(String.format("Wad: %s", bed.getBed_type()));
-        holder.specialist.setText(bed.getSpecialist());
+        holder.specialist.setText(String.format("Clinic: %s", bed.getSpecialist()));
+        holder.doctor.setText(String.format("Doctor: %s", bed.getDoctor()));
         holder.status.setText(bed.getStatus());
         if (bed.getStatus().equals(Constant.BOOKING_APPROVED)){
             holder.status.setBackground(mContext.getDrawable(R.drawable.status_approved));
@@ -84,7 +86,7 @@ public class BedAdapter extends BaseAdapter {
 //        }
         holder.patient_name.setText(String.format("Patient: %s", bed.getUser_name()));
         holder.check_in.setText(String.format("Start: %s", bed.getCheck_in()));
-        holder.check_out.setText(String.format("End: %s", bed.getCheck_out()));
+//        holder.check_out.setText(String.format("End: %s", bed.getCheck_out()));
 
 
         return convertView;
@@ -92,13 +94,14 @@ public class BedAdapter extends BaseAdapter {
 
     static class ViewHolder {
         TextView bed_id;
-        TextView patient_id;
+//        TextView patient_id;
         TextView patient_name;
         TextView bed_name;
         TextView bed_type;
         TextView specialist;
+        TextView doctor;
         TextView status;
         TextView check_in;
-        TextView check_out;
+//        TextView check_out;
     }
 }

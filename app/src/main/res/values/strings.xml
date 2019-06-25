@@ -58,7 +58,7 @@
     <string name="home_signout">Sign Out</string>
     <string name="home_contact">Contact Us</string>
     <string name="home_welcome">Welcome to UBed HTAR</string>
-    <string name="home_bed_num">Bed left</string>
+    <string name="home_bed_num">Bed left \n (Ward O&amp;G)</string>
     <string name="home_app_num">Appointment taken</string>
 
 
@@ -81,16 +81,14 @@
 
 
     <!--specialists list-->
-    <string name="specialist_prompt">Choose specialist</string>
+    <string name="specialist_prompt">Choose clinic</string>
     <string-array name="specialist_array">
-        <item>Paediatrics</item>
-        <item>Orthopaedics</item>
-        <item>Ear nose and throat (ENT)</item>
-        <item>Neurology</item>
-        <item>Nutrition and Dietetics</item>
+        <!--<item>Paediatrics</item>-->
+        <!--<item>Orthopaedics</item>-->
+        <!--<item>Ear nose and throat (ENT)</item>-->
+        <!--<item>Neurology</item>-->
+        <!--<item>Nutrition and Dietetics</item>-->
         <item>Obstetrics and Gynecology</item>
-        <item>Radiology</item>
-        <item>Urology</item>
     </string-array>
 
     <!--doctors list-->
@@ -131,6 +129,10 @@
     <string name="admin_bed_name">Bed Id</string>
     <string name="admin_bed_start">Start Date</string>
     <string name="admin_bed_end">End Date</string>
+
+    <!--admin app-->
+    <string name="admin_app_date">Date</string>
+    <string name="admin_app_time">Time</string>
 
     <!--review fragment-->
     <string name="review_empty">No feedback</string>
