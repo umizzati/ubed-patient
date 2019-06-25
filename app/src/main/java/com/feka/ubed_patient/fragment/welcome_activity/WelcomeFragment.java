@@ -10,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.feka.ubed_patient.BaseApplication;
 import com.feka.ubed_patient.Constant;
 import com.feka.ubed_patient.R;
 import com.feka.ubed_patient.model.Count;
+import com.feka.ubed_patient.utils.SPUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.EventListener;
@@ -42,7 +44,7 @@ public class WelcomeFragment extends Fragment{
     TextView bedNum, appNum;
     int bedGetNum, appGetNum;
     ArrayList<Count> mCount;
-
+    LinearLayout loginLayout, homeLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class WelcomeFragment extends Fragment{
 
         Button ubed = v.findViewById(R.id.ubed_btn);
         Button appointment = v.findViewById(R.id.app_btn);
+
+        loginLayout = v.findViewById(R.id.btn_login_layout);
+        homeLayout = v.findViewById(R.id.btn_home_layout);
 
         bedNum = v.findViewById(R.id.bed_num);
         appNum = v.findViewById(R.id.app_num);
@@ -94,6 +99,16 @@ public class WelcomeFragment extends Fragment{
 
         updateProgressNum();
         getProgress();
+
+        boolean isLogin = SPUtils.getInstance().getSP().getBoolean(Constant.USER_EXISTS, false);
+        if (isLogin){
+            loginLayout.setVisibility(View.GONE);
+            homeLayout.setVisibility(View.VISIBLE);
+        }else{
+            loginLayout.setVisibility(View.VISIBLE);
+            homeLayout.setVisibility(View.GONE);
+        }
+
 
         return v;
     }
